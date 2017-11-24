@@ -1,6 +1,5 @@
 package com.epam.homework.orm.db.dao;
 
-import com.epam.homework.orm.domain.Airplane;
 import com.epam.homework.orm.domain.Flight;
 
 import javax.persistence.EntityManager;
