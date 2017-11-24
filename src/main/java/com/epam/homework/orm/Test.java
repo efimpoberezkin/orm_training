@@ -36,5 +36,18 @@ public class Test {
 //        airplaneDAO.delete(1);
 
 //        flightDAO.save(flight);
+
+//        List<Flight> flights = flightDAO.findAll();
+//        flights.forEach((Flight f) -> System.out.println(f.getId() + ", " + f.getFrom() + ", " + f.getTo() + ", "
+//                + f.getDeparture() + ", " + f.getArrival()));
+
+//        Flight loadedFlight = flightDAO.findBy(1);
+//        System.out.println(loadedFlight.getId() + ", " + loadedFlight.getFrom() + ", " + loadedFlight.getTo() + ", "
+//                + loadedFlight.getDeparture() + ", " + loadedFlight.getArrival());
+//
+//        loadedFlight.setTo("C");
+//        flightDAO.update(loadedFlight);
+
+//        flightDAO.delete(1);
     }
 }

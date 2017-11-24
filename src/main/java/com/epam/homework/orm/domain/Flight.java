@@ -10,7 +10,14 @@ import static com.epam.homework.orm.ConstantsContainer.*;
 
 @Entity
 @Table(name = FLIGHT)
+@NamedQueries({
+        @NamedQuery(name = Flight.FIND_ALL_FLIGHTS, query = "SELECT f FROM Flight f"),
+        @NamedQuery(name = Flight.FIND_FLIGHT_BY_ID, query = "SELECT f FROM Flight f WHERE id = :id")
+})
 public class Flight {
+
+    public static final String FIND_ALL_FLIGHTS = "findAllFlights";
+    public static final String FIND_FLIGHT_BY_ID = "findFlightById";//"";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +42,7 @@ public class Flight {
     @JoinColumn(name = AIRPLANE_ID)
     private Airplane airplane;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.PERSIST})
     @JoinTable(
             name = BOOKING,
             joinColumns = @JoinColumn(name = FLIGHT_ID),
