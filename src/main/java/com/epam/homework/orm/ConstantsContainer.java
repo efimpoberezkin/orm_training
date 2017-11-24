@@ -23,7 +23,6 @@ public final class ConstantsContainer {
     public static final String AIRPLANE_ID = "airplane_id";
     public static final String FLIGHT_ID = "flight_id";
     public static final String PASSENGER_ID = "passenger_ID";
-    public static final String PASSENGERS = "passengers";
 
     private ConstantsContainer() {
     }
