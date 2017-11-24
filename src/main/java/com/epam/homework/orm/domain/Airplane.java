@@ -24,8 +24,7 @@ public class Airplane {
     @OneToMany(
             mappedBy = AIRPLANE,
             fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
+            cascade = CascadeType.ALL
     )
     private List<Flight> flights = new ArrayList<>();
 
