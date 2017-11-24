@@ -17,7 +17,7 @@ import static com.epam.homework.orm.ConstantsContainer.*;
 public class Flight {
 
     public static final String FIND_ALL_FLIGHTS = "findAllFlights";
-    public static final String FIND_FLIGHT_BY_ID = "findFlightById";//"";
+    public static final String FIND_FLIGHT_BY_ID = "findFlightById";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
