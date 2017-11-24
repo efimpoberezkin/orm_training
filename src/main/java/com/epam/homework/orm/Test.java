@@ -14,7 +14,9 @@ public class Test {
         DAO<Passenger> passengerDAO = new PassengerDAOImpl();
         DAO<PassengerContactInfo> passengerContactInfoDAO = new PassengerContactInfoDAOImpl();
 
+//        PassengerContactInfo passengerContactInfo = new PassengerContactInfo("John's email", "John's phone");
 //        Passenger passenger = new Passenger("John", Gender.MALE);
+//        passenger.setPassengerContactInfo(passengerContactInfo);
 //        Flight flight = new Flight("A", "B", Timestamp.valueOf("2015-10-10 10:10:10.0"),
 //                Timestamp.valueOf("2015-10-10 13:10:10.0"));
 //        flight.addPassenger(passenger);
@@ -61,5 +63,13 @@ public class Test {
 //        passengerDAO.update(loadedPassenger);
 
 //        passengerDAO.delete(1);
+
+//        PassengerContactInfo loadedInfo = passengerContactInfoDAO.findBy(1);
+//        System.out.println(loadedInfo.getId() + ", " + loadedInfo.getEmail() + ", " + loadedInfo.getPhone());
+
+//        loadedInfo.setEmail("John's second email");
+//        passengerContactInfoDAO.update(loadedInfo);
+
+//        passengerContactInfoDAO.delete(1);
     }
 }
