@@ -18,12 +18,14 @@ public class Airplane {
     @Column(name = MODEL_NUMBER)
     private String modelNumber;
 
-    @Column(name = CAPACITY)
+    @Column
     private int capacity;
 
     @OneToMany(
             mappedBy = AIRPLANE,
-            fetch = FetchType.LAZY
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
     )
     private List<Flight> flights = new ArrayList<>();
 

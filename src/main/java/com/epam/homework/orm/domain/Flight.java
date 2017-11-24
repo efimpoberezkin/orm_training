@@ -16,28 +16,26 @@ public class Flight {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = FROM)
+    @Column(name = FROM_LOC)
     private String from;
 
-    @Column(name = TO)
+    @Column(name = TO_LOC)
     private String to;
 
-    @Column(name = DEPARTURE)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Column
     private Timestamp departure;
 
-    @Column(name = ARRIVAL)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Column
     private Timestamp arrival;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.PERSIST
+    )
     @JoinColumn(name = AIRPLANE_ID)
     private Airplane airplane;
 
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = BOOKING,
             joinColumns = @JoinColumn(name = FLIGHT_ID),

@@ -15,11 +15,11 @@ public class Passenger {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = NAME)
+    @Column
     private String name;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = GENDER)
+    @Column
     private Gender gender;
 
     @OneToOne(

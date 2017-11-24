@@ -11,10 +11,10 @@ public class PassengerContactInfo {
     @Id
     private Long id;
 
-    @Column(name = EMAIL)
+    @Column
     private String email;
 
-    @Column(name = PHONE)
+    @Column
     private String phone;
 
     @OneToOne(fetch = FetchType.LAZY)

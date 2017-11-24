@@ -1,7 +1,7 @@
 CREATE TABLE "flight" (
 	"id" SERIAL NOT NULL,
-	"from" varchar NOT NULL,
-	"to" varchar NOT NULL,
+	"from_loc" varchar NOT NULL,
+	"to_loc" varchar NOT NULL,
 	"departure" timestamp NOT NULL,
 	"arrival" timestamp NOT NULL,
 	"airplane_id" int4 NOT NULL,
