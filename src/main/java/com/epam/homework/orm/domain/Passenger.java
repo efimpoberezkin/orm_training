@@ -9,7 +9,22 @@ import static com.epam.homework.orm.ConstantsContainer.*;
 
 @Entity
 @Table(name = PASSENGER)
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name = Passenger.FIND_ALL_PASSENGERS,
+                query = "SELECT p.id, p.name, p.gender FROM passenger p",
+                resultClass = Passenger.class
+        ),
+        @NamedNativeQuery(
+                name = Passenger.FIND_PASSENGER_BY_ID,
+                query = "SELECT p.id, p.name, p.gender FROM passenger p WHERE p.id = ?",
+                resultClass = Passenger.class
+        )
+})
 public class Passenger {
+
+    public static final String FIND_ALL_PASSENGERS = "findAllPassengers";
+    public static final String FIND_PASSENGER_BY_ID = "findPassengerById";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +44,17 @@ public class Passenger {
     )
     private PassengerContactInfo passengerContactInfo;
 
-    @ManyToMany(mappedBy = PASSENGERS)
+    @ManyToMany(
+            fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(
+            name = BOOKING,
+            joinColumns = @JoinColumn(name = PASSENGER_ID),
+            inverseJoinColumns = @JoinColumn(name = FLIGHT_ID)
+    )
     private Set<Flight> flights = new HashSet<>();
 
     public Passenger() {

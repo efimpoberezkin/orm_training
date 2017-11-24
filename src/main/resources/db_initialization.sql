@@ -16,10 +16,10 @@ CREATE TABLE "passenger" (
 );
 
 CREATE TABLE "passenger_contact_info" (
-	"id" int4 NOT NULL,
+	"passenger_id" int4 NOT NULL,
 	"email" varchar,
 	"phone" varchar,
-	PRIMARY KEY("id")
+	PRIMARY KEY("passenger_id")
 );
 
 CREATE TABLE "airplane" (
@@ -43,7 +43,7 @@ ALTER TABLE "flight" ADD CONSTRAINT "flies" FOREIGN KEY ("airplane_id")
 	ON UPDATE NO ACTION
 	NOT DEFERRABLE;
 
-ALTER TABLE "passenger_contact_info" ADD CONSTRAINT "has_contact_info" FOREIGN KEY ("id")
+ALTER TABLE "passenger_contact_info" ADD CONSTRAINT "has_contact_info" FOREIGN KEY ("passenger_id")
 	REFERENCES "passenger"("id")
 	MATCH SIMPLE
 	ON DELETE NO ACTION

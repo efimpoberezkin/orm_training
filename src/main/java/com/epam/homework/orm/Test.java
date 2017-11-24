@@ -1,10 +1,7 @@
 package com.epam.homework.orm;
 
 import com.epam.homework.orm.db.dao.*;
-import com.epam.homework.orm.domain.Airplane;
-import com.epam.homework.orm.domain.Flight;
-import com.epam.homework.orm.domain.Passenger;
-import com.epam.homework.orm.domain.PassengerContactInfo;
+import com.epam.homework.orm.domain.*;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -17,9 +14,11 @@ public class Test {
         DAO<Passenger> passengerDAO = new PassengerDAOImpl();
         DAO<PassengerContactInfo> passengerContactInfoDAO = new PassengerContactInfoDAOImpl();
 
-//        Airplane airplane = new Airplane("Boeing", 200);
+//        Passenger passenger = new Passenger("John", Gender.MALE);
 //        Flight flight = new Flight("A", "B", Timestamp.valueOf("2015-10-10 10:10:10.0"),
 //                Timestamp.valueOf("2015-10-10 13:10:10.0"));
+//        flight.addPassenger(passenger);
+//        Airplane airplane = new Airplane("Boeing", 200);
 //        airplane.addFlight(flight);
 
 //        airplaneDAO.save(airplane);
@@ -44,10 +43,23 @@ public class Test {
 //        Flight loadedFlight = flightDAO.findBy(1);
 //        System.out.println(loadedFlight.getId() + ", " + loadedFlight.getFrom() + ", " + loadedFlight.getTo() + ", "
 //                + loadedFlight.getDeparture() + ", " + loadedFlight.getArrival());
-//
+
 //        loadedFlight.setTo("C");
 //        flightDAO.update(loadedFlight);
 
 //        flightDAO.delete(1);
+
+//        passengerDAO.save(passenger);
+
+//        List<Passenger> passengers = passengerDAO.findAll();
+//        passengers.forEach((Passenger p) -> System.out.println(p.getId() + ", " + p.getName() + ", " + p.getGender()));
+
+//        Passenger loadedPassenger = passengerDAO.findBy(1);
+//        System.out.println(loadedPassenger.getId() + ", " + loadedPassenger.getName() + ", " + loadedPassenger.getGender());
+
+//        loadedPassenger.setName("Jack");
+//        passengerDAO.update(loadedPassenger);
+
+//        passengerDAO.delete(1);
     }
 }
