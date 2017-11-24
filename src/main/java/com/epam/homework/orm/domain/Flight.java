@@ -42,7 +42,7 @@ public class Flight {
     @JoinColumn(name = AIRPLANE_ID)
     private Airplane airplane;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST})
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = BOOKING,
             joinColumns = @JoinColumn(name = FLIGHT_ID),
