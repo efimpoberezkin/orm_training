@@ -37,12 +37,19 @@ public class Flight {
 
     @ManyToOne(
             fetch = FetchType.LAZY,
-            cascade = CascadeType.PERSIST
-    )
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
     @JoinColumn(name = AIRPLANE_ID)
     private Airplane airplane;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(
+            fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
     @JoinTable(
             name = BOOKING,
             joinColumns = @JoinColumn(name = FLIGHT_ID),
@@ -131,6 +138,6 @@ public class Flight {
 
     @Override
     public int hashCode() {
-        return (int) (id ^ (id >>> 32));
+        return id != null ? id.hashCode() : 0;
     }
 }
