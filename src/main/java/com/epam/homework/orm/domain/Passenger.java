@@ -9,6 +9,15 @@ import static com.epam.homework.orm.ConstantsContainer.*;
 
 @Entity
 @Table(name = PASSENGER)
+@NamedQueries({
+        @NamedQuery(
+                name = Passenger.FIND_PASSENGERS_BY_FLIGHT_NAMED_QUERY,
+                query = "SELECT DISTINCT p FROM Passenger p "
+                        + "INNER JOIN p.flights f "
+                        + "WHERE f.id = :id "
+                        + "ORDER BY p.name"
+        )
+})
 @NamedNativeQueries({
         @NamedNativeQuery(
                 name = Passenger.FIND_ALL_PASSENGERS,
@@ -19,12 +28,23 @@ import static com.epam.homework.orm.ConstantsContainer.*;
                 name = Passenger.FIND_PASSENGER_BY_ID,
                 query = "SELECT p.id, p.name, p.gender FROM passenger p WHERE p.id = ?",
                 resultClass = Passenger.class
+        ),
+        @NamedNativeQuery(
+                name = Passenger.FIND_PASSENGERS_BY_FLIGHT_NATIVE_QUERY,
+                query = "SELECT DISTINCT p.id, p.name, p.gender "
+                        + "FROM passenger p "
+                        + "INNER JOIN booking b ON p.id = b.passenger_id "
+                        + "WHERE b.flight_id = ? "
+                        + "ORDER BY p.name",
+                resultClass = Passenger.class
         )
 })
 public class Passenger {
 
     public static final String FIND_ALL_PASSENGERS = "findAllPassengers";
     public static final String FIND_PASSENGER_BY_ID = "findPassengerById";
+    public static final String FIND_PASSENGERS_BY_FLIGHT_NAMED_QUERY = "findPassengersByFlightNamedQuery";
+    public static final String FIND_PASSENGERS_BY_FLIGHT_NATIVE_QUERY = "findPassengersByFlightNativeQuery";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -112,5 +132,14 @@ public class Passenger {
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Passenger{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", gender=" + gender +
+                '}';
     }
 }
