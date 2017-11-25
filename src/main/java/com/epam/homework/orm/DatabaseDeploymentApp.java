@@ -4,7 +4,7 @@ import com.epam.homework.orm.db.DatabaseInitializer;
 import com.epam.homework.orm.db.DatabasePopulator;
 import org.apache.log4j.Logger;
 
-public class App {
+public class DatabaseDeploymentApp {
 
     private static final String JDBC_DRIVER = "org.postgresql.Driver";
     private static final Logger log = Logger.getRootLogger();
