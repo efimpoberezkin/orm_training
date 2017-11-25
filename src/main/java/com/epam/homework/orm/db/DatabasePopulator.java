@@ -114,8 +114,7 @@ public class DatabasePopulator {
 
         log.debug("Populating database with prepared data...");
 
-        DAO<Airplane> airplaneDAO = new AirplaneDAOImpl();
-        airplaneDAO.save(boeing737);
+        new AirplaneDAOImpl().save(boeing737);
 
         log.debug("Database populated");
     }
