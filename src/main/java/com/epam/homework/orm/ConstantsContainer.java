@@ -26,6 +26,7 @@ public final class ConstantsContainer {
 
     // entity field names
     public static final String FLIGHTS = "flights";
+    public static final String PASSENGERS = "passengers";
     public static final String NAME = "name";
 
     // both entity and db

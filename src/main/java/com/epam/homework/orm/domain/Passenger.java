@@ -65,16 +65,12 @@ public class Passenger {
     private PassengerContactInfo passengerContactInfo;
 
     @ManyToMany(
+            mappedBy = PASSENGERS,
             fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.PERSIST,
                     CascadeType.MERGE
             })
-    @JoinTable(
-            name = BOOKING,
-            joinColumns = @JoinColumn(name = PASSENGER_ID),
-            inverseJoinColumns = @JoinColumn(name = FLIGHT_ID)
-    )
     private Set<Flight> flights = new HashSet<>();
 
     public Passenger() {
