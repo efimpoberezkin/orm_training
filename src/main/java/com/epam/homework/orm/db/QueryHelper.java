@@ -23,7 +23,7 @@ public class QueryHelper {
     private EntityManagerFactory entityManagerFactory
             = Persistence.createEntityManagerFactory("flight_booking_unit");
 
-    public List<Passenger> findPassengersByFlightOrderByNameJPQL(Long id) {
+    public List<Passenger> findPassengersByFlightOrderByNameJPQL(long id) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         List<Passenger> passengers = entityManager.createQuery(FIND_PASSENGERS_BY_FLIGHT_PSQL)
@@ -34,7 +34,7 @@ public class QueryHelper {
         return passengers;
     }
 
-    public List<Passenger> findPassengersByFlightOrderByNameNamedQuery(Long id) {
+    public List<Passenger> findPassengersByFlightOrderByNameNamedQuery(long id) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         List<Passenger> passengers = entityManager.createNamedQuery(Passenger.FIND_PASSENGERS_BY_FLIGHT_NAMED_QUERY)
@@ -45,7 +45,7 @@ public class QueryHelper {
         return passengers;
     }
 
-    public List<Passenger> findPassengersByFlightOrderByNameNativeQuery(Long id) {
+    public List<Passenger> findPassengersByFlightOrderByNameNativeQuery(long id) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         List<Passenger> passengers = entityManager.createNamedQuery(Passenger.FIND_PASSENGERS_BY_FLIGHT_NATIVE_QUERY)
@@ -56,7 +56,7 @@ public class QueryHelper {
         return passengers;
     }
 
-    public List<Passenger> findPassengersByFlightOrderByNameCriteriaAPI(Long id) {
+    public List<Passenger> findPassengersByFlightOrderByNameCriteriaAPI(long id) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
