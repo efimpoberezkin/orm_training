@@ -10,6 +10,8 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
+import static com.epam.homework.orm.ConstantsContainer.*;
+
 public class PassengerContactInfoDAOImpl implements PassengerContactInfoDAO {
 
     private EntityManagerFactory entityManagerFactory
@@ -32,7 +34,7 @@ public class PassengerContactInfoDAOImpl implements PassengerContactInfoDAO {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<PassengerContactInfo> criteriaQuery = criteriaBuilder.createQuery(PassengerContactInfo.class);
         Root<PassengerContactInfo> info = criteriaQuery.from(PassengerContactInfo.class);
-        criteriaQuery.select(info).where(criteriaBuilder.equal(info.get("id"), id));
+        criteriaQuery.select(info).where(criteriaBuilder.equal(info.get(ID), id));
         PassengerContactInfo passengerContactInfo = entityManager.createQuery(criteriaQuery).getSingleResult();
 
         entityManager.close();

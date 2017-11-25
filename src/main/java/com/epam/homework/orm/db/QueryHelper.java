@@ -10,6 +10,8 @@ import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
+import static com.epam.homework.orm.ConstantsContainer.*;
+
 public class QueryHelper {
 
     private static final String FIND_PASSENGERS_BY_FLIGHT_PSQL =
@@ -25,7 +27,7 @@ public class QueryHelper {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         List<Passenger> passengers = entityManager.createQuery(FIND_PASSENGERS_BY_FLIGHT_PSQL)
-                .setParameter("id", id)
+                .setParameter(ID, id)
                 .getResultList();
 
         entityManager.close();
@@ -36,7 +38,7 @@ public class QueryHelper {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         List<Passenger> passengers = entityManager.createNamedQuery(Passenger.FIND_PASSENGERS_BY_FLIGHT_NAMED_QUERY)
-                .setParameter("id", id)
+                .setParameter(ID, id)
                 .getResultList();
 
         entityManager.close();
@@ -60,9 +62,9 @@ public class QueryHelper {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Passenger> criteriaQuery = criteriaBuilder.createQuery(Passenger.class);
         Root<Passenger> passenger = criteriaQuery.from(Passenger.class);
-        Join<Passenger, Flight> flight = passenger.join("flights");
-        criteriaQuery.select(passenger).where(criteriaBuilder.equal(flight.get("id"), id)).distinct(true);
-        criteriaQuery.orderBy(criteriaBuilder.asc(passenger.get("name")));
+        Join<Passenger, Flight> flight = passenger.join(FLIGHTS);
+        criteriaQuery.select(passenger).where(criteriaBuilder.equal(flight.get(ID), id)).distinct(true);
+        criteriaQuery.orderBy(criteriaBuilder.asc(passenger.get(NAME)));
         List<Passenger> passengers = entityManager.createQuery(criteriaQuery).getResultList();
 
         entityManager.close();

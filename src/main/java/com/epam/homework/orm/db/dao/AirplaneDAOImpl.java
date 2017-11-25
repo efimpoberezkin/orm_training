@@ -7,6 +7,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
 
+import static com.epam.homework.orm.ConstantsContainer.*;
+
 public class AirplaneDAOImpl implements AirplaneDAO {
 
     private static final String FIND_ALL_AIRPLANES = "SELECT a FROM Airplane a";
@@ -42,7 +44,7 @@ public class AirplaneDAOImpl implements AirplaneDAO {
 
         Airplane airplane =
                 (Airplane) entityManager.createQuery(FIND_AIRPLANE_BY_ID)
-                        .setParameter("id", id)
+                        .setParameter(ID, id)
                         .getSingleResult();
 
         entityManager.close();

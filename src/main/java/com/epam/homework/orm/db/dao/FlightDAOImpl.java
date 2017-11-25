@@ -7,6 +7,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
 
+import static com.epam.homework.orm.ConstantsContainer.*;
+
 public class FlightDAOImpl implements FlightDAO {
 
     private EntityManagerFactory entityManagerFactory
@@ -39,7 +41,7 @@ public class FlightDAOImpl implements FlightDAO {
 
         Flight flight =
                 (Flight) entityManager.createNamedQuery(Flight.FIND_FLIGHT_BY_ID)
-                        .setParameter("id", id)
+                        .setParameter(ID, id)
                         .getSingleResult();
 
         entityManager.close();

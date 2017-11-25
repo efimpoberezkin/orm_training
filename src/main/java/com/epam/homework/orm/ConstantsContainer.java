@@ -24,6 +24,13 @@ public final class ConstantsContainer {
     public static final String FLIGHT_ID = "flight_id";
     public static final String PASSENGER_ID = "passenger_ID";
 
+    // entity field names
+    public static final String FLIGHTS = "flights";
+    public static final String NAME = "name";
+
+    // both entity and db
+    public static final String ID = "id";
+
     private ConstantsContainer() {
     }
 }
