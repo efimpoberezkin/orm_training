@@ -14,7 +14,7 @@ import static com.epam.homework.orm.ConstantsContainer.*;
 
 public class QueryHelper {
 
-    private static final String FIND_PASSENGERS_BY_FLIGHT_PSQL =
+    private static final String FIND_PASSENGERS_BY_FLIGHT_JPQL =
             "SELECT DISTINCT p FROM Passenger p "
                     + "INNER JOIN p.flights f "
                     + "WHERE f.id = :id "
@@ -26,7 +26,7 @@ public class QueryHelper {
     public List<Passenger> findPassengersByFlightOrderByNameJPQL(long id) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        List<Passenger> passengers = entityManager.createQuery(FIND_PASSENGERS_BY_FLIGHT_PSQL)
+        List<Passenger> passengers = entityManager.createQuery(FIND_PASSENGERS_BY_FLIGHT_JPQL)
                 .setParameter(ID, id)
                 .getResultList();
 

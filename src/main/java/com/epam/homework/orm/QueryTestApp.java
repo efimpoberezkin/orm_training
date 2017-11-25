@@ -12,9 +12,9 @@ public class QueryTestApp {
         long id = 7L;
         System.out.println("*** Finding passengers by flight id and ordering by name ***");
 
-        System.out.println("\n--- PSQL ---");
-        List<Passenger> flightPassengersPSQL = new QueryHelper().findPassengersByFlightOrderByNameJPQL(id);
-        flightPassengersPSQL.forEach(System.out::println);
+        System.out.println("\n--- JPQL ---");
+        List<Passenger> flightPassengersJPQL = new QueryHelper().findPassengersByFlightOrderByNameJPQL(id);
+        flightPassengersJPQL.forEach(System.out::println);
 
         System.out.println("\n--- Named Query ---");
         List<Passenger> flightPassengersNamed = new QueryHelper().findPassengersByFlightOrderByNameNamedQuery(id);
