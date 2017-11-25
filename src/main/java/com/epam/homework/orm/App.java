@@ -1,6 +1,7 @@
 package com.epam.homework.orm;
 
 import com.epam.homework.orm.db.DatabaseInitializer;
+import com.epam.homework.orm.db.DatabasePopulator;
 import org.apache.log4j.Logger;
 
 public class App {
@@ -21,5 +22,8 @@ public class App {
 
         log.info("*** Initializing database ***");
         DatabaseInitializer.initialize(true);
+
+        log.info("*** Populating database with example data ***");
+        DatabasePopulator.populateWithExampleData();
     }
 }
