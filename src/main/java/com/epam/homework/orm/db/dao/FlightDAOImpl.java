@@ -29,7 +29,7 @@ public class FlightDAOImpl implements FlightDAO {
     public List<Flight> findAll() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        List<Flight> flights = entityManager.createNamedQuery(Flight.FIND_ALL_FLIGHTS).getResultList();
+        List<Flight> flights = entityManager.createNamedQuery(Flight.FIND_ALL_FLIGHTS, Flight.class).getResultList();
 
         entityManager.close();
         return flights;
@@ -40,7 +40,7 @@ public class FlightDAOImpl implements FlightDAO {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         Flight flight =
-                (Flight) entityManager.createNamedQuery(Flight.FIND_FLIGHT_BY_ID)
+                entityManager.createNamedQuery(Flight.FIND_FLIGHT_BY_ID, Flight.class)
                         .setParameter(ID, id)
                         .getSingleResult();
 

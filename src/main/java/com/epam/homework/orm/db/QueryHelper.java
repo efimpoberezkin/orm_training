@@ -35,7 +35,7 @@ public class QueryHelper {
     public List<Passenger> findPassengersByFlightOrderByNameJPQL(long id) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        List<Passenger> passengers = entityManager.createQuery(FIND_PASSENGERS_BY_FLIGHT_JPQL)
+        List<Passenger> passengers = entityManager.createQuery(FIND_PASSENGERS_BY_FLIGHT_JPQL, Passenger.class)
                 .setParameter(ID, id)
                 .getResultList();
 
@@ -46,9 +46,10 @@ public class QueryHelper {
     public List<Passenger> findPassengersByFlightOrderByNameNamedQuery(long id) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        List<Passenger> passengers = entityManager.createNamedQuery(Passenger.FIND_PASSENGERS_BY_FLIGHT_NAMED_QUERY)
-                .setParameter(ID, id)
-                .getResultList();
+        List<Passenger> passengers =
+                entityManager.createNamedQuery(Passenger.FIND_PASSENGERS_BY_FLIGHT_NAMED_QUERY, Passenger.class)
+                        .setParameter(ID, id)
+                        .getResultList();
 
         entityManager.close();
         return passengers;
@@ -57,9 +58,10 @@ public class QueryHelper {
     public List<Passenger> findPassengersByFlightOrderByNameNativeQuery(long id) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        List<Passenger> passengers = entityManager.createNamedQuery(Passenger.FIND_PASSENGERS_BY_FLIGHT_NATIVE_QUERY)
-                .setParameter(1, id)
-                .getResultList();
+        List<Passenger> passengers =
+                entityManager.createNamedQuery(Passenger.FIND_PASSENGERS_BY_FLIGHT_NATIVE_QUERY, Passenger.class)
+                        .setParameter(1, id)
+                        .getResultList();
 
         entityManager.close();
         return passengers;

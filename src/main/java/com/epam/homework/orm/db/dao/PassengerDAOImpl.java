@@ -27,7 +27,8 @@ public class PassengerDAOImpl implements PassengerDAO {
     public List<Passenger> findAll() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        List<Passenger> passengers = entityManager.createNamedQuery(Passenger.FIND_ALL_PASSENGERS).getResultList();
+        List<Passenger> passengers =
+                entityManager.createNamedQuery(Passenger.FIND_ALL_PASSENGERS, Passenger.class).getResultList();
 
         entityManager.close();
         return passengers;
@@ -38,7 +39,7 @@ public class PassengerDAOImpl implements PassengerDAO {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         Passenger passenger =
-                (Passenger) entityManager.createNamedQuery(Passenger.FIND_PASSENGER_BY_ID)
+                entityManager.createNamedQuery(Passenger.FIND_PASSENGER_BY_ID, Passenger.class)
                         .setParameter(1, id)
                         .getSingleResult();
 

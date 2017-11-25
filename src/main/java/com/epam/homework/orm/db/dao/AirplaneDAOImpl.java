@@ -32,7 +32,7 @@ public class AirplaneDAOImpl implements AirplaneDAO {
     public List<Airplane> findAll() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        List<Airplane> airplanes = entityManager.createQuery(FIND_ALL_AIRPLANES).getResultList();
+        List<Airplane> airplanes = entityManager.createQuery(FIND_ALL_AIRPLANES, Airplane.class).getResultList();
 
         entityManager.close();
         return airplanes;
@@ -43,7 +43,7 @@ public class AirplaneDAOImpl implements AirplaneDAO {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         Airplane airplane =
-                (Airplane) entityManager.createQuery(FIND_AIRPLANE_BY_ID)
+                entityManager.createQuery(FIND_AIRPLANE_BY_ID, Airplane.class)
                         .setParameter(ID, id)
                         .getSingleResult();
 
