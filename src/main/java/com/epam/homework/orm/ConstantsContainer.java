@@ -32,6 +32,9 @@ public final class ConstantsContainer {
     // both entity and db
     public static final String ID = "id";
 
+    // query param
+    public static final String FILTER = "filter";
+
     private ConstantsContainer() {
     }
 }
