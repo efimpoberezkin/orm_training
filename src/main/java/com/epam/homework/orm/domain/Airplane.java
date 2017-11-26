@@ -15,10 +15,10 @@ public class Airplane {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = MODEL_NUMBER)
+    @Column(name = MODEL_NUMBER, nullable = false)
     private String modelNumber;
 
-    @Column
+    @Column(nullable = false)
     private int capacity;
 
     @OneToMany(

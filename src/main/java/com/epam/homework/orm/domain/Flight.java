@@ -43,16 +43,16 @@ public class Flight {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = FROM_LOC)
+    @Column(name = FROM_LOC, nullable = false)
     private String from;
 
-    @Column(name = TO_LOC)
+    @Column(name = TO_LOC, nullable = false)
     private String to;
 
-    @Column
+    @Column(nullable = false)
     private Timestamp departure;
 
-    @Column
+    @Column(nullable = false)
     private Timestamp arrival;
 
     @ManyToOne(
