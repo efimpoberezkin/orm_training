@@ -61,12 +61,6 @@ public class PassengerDAOImpl implements PassengerDAO {
 
     @Override
     public void delete(long id) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-        entityManager.getTransaction().begin();
-        entityManager.remove(entityManager.merge(findBy(id)));
-        entityManager.getTransaction().commit();
-
-        entityManager.close();
+        throw new UnsupportedOperationException("Operation not supported: passenger has to be deleted via flight");
     }
 }
