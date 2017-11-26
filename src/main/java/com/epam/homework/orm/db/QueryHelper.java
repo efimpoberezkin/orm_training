@@ -8,6 +8,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Root;
+import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -116,7 +117,7 @@ public class QueryHelper {
         List<Object[]> flights = new ArrayList<>();
         for (Tuple t : tuples) {
             Flight flight = new Flight();
-            flight.setId((Integer) t.get(0));
+            flight.setId(((BigInteger) t.get(0)).longValue());
             flight.setTo((String) t.get(1));
             flight.setFrom((String) t.get(2));
             flight.setDeparture((Timestamp) t.get(3));
