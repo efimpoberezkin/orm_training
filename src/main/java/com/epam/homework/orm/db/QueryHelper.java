@@ -33,6 +33,10 @@ public class QueryHelper {
     private EntityManagerFactory entityManagerFactory
             = Persistence.createEntityManagerFactory(FLIGHT_BOOKING_PERSISTENCE_UNIT);
 
+    public static QueryHelper getInstance() {
+        return new QueryHelper();
+    }
+
     public List<Passenger> findPassengersByFlightOrderByNameJPQL(long id) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 

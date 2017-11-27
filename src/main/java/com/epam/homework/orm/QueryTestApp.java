@@ -10,23 +10,25 @@ public class QueryTestApp {
 
     public static void main(String[] args) {
 
+        QueryHelper queryHelper = QueryHelper.getInstance();
+
         long id = 7L;
         System.out.println("*** Finding passengers by flight id and ordering by name ***");
 
         System.out.println("\n--- JPQL ---");
-        List<Passenger> flightPassengersJPQL = new QueryHelper().findPassengersByFlightOrderByNameJPQL(id);
+        List<Passenger> flightPassengersJPQL = queryHelper.findPassengersByFlightOrderByNameJPQL(id);
         flightPassengersJPQL.forEach(System.out::println);
 
         System.out.println("\n--- Named Query ---");
-        List<Passenger> flightPassengersNamed = new QueryHelper().findPassengersByFlightOrderByNameNamedQuery(id);
+        List<Passenger> flightPassengersNamed = queryHelper.findPassengersByFlightOrderByNameNamedQuery(id);
         flightPassengersNamed.forEach(System.out::println);
 
         System.out.println("\n--- Native Query ---");
-        List<Passenger> flightPassengersNative = new QueryHelper().findPassengersByFlightOrderByNameNativeQuery(id);
+        List<Passenger> flightPassengersNative = queryHelper.findPassengersByFlightOrderByNameNativeQuery(id);
         flightPassengersNative.forEach(System.out::println);
 
         System.out.println("\n--- Criteria API ---");
-        List<Passenger> flightPassengersCriteria = new QueryHelper().findPassengersByFlightOrderByNameCriteriaAPI(id);
+        List<Passenger> flightPassengersCriteria = queryHelper.findPassengersByFlightOrderByNameCriteriaAPI(id);
         flightPassengersCriteria.forEach(System.out::println);
 
         int filter = 4;
@@ -35,19 +37,19 @@ public class QueryTestApp {
         String format = "%s --- %s passengers";
 
         System.out.println("\n--- JPQL ---");
-        List<Tuple> flightsJPQL = new QueryHelper().findFlightsWithLessThanFilterPassengersJPQL(filter);
+        List<Tuple> flightsJPQL = queryHelper.findFlightsWithLessThanFilterPassengersJPQL(filter);
         flightsJPQL.forEach((Tuple t) -> System.out.println(String.format(format, t.get(0), t.get(1))));
 
         System.out.println("\n--- Named Query ---");
-        List<Tuple> flightsNamed = new QueryHelper().findFlightsWithLessThanFilterPassengersNamedQuery(filter);
+        List<Tuple> flightsNamed = queryHelper.findFlightsWithLessThanFilterPassengersNamedQuery(filter);
         flightsNamed.forEach((Tuple t) -> System.out.println(String.format(format, t.get(0), t.get(1))));
 
         System.out.println("\n--- Native Query ---");
-        List<Object[]> flightsNative = new QueryHelper().findFlightsWithLessThanFilterPassengersNativeQuery(filter);
+        List<Object[]> flightsNative = queryHelper.findFlightsWithLessThanFilterPassengersNativeQuery(filter);
         flightsNative.forEach((Object[] o) -> System.out.println(String.format(format, o[0], o[1])));
 
         System.out.println("\n--- Criteria API ---");
-        List<Tuple> flightsCriteria = new QueryHelper().findFlightsWithLessThanFilterPassengersCriteriaAPI(filter);
+        List<Tuple> flightsCriteria = queryHelper.findFlightsWithLessThanFilterPassengersCriteriaAPI(filter);
         flightsCriteria.forEach((Tuple t) -> System.out.println(String.format(format, t.get(0), t.get(1))));
     }
 }
