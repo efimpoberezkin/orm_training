@@ -12,7 +12,7 @@ import static com.epam.homework.orm.ConstantsContainer.*;
 public class FlightDAOImpl implements FlightDAO {
 
     private EntityManagerFactory entityManagerFactory
-            = Persistence.createEntityManagerFactory("flight_booking_unit");
+            = Persistence.createEntityManagerFactory(FLIGHT_BOOKING_PERSISTENCE_UNIT);
 
     @Override
     public void save(Flight flight) {

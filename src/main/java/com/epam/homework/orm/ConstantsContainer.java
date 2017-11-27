@@ -2,6 +2,9 @@ package com.epam.homework.orm;
 
 public final class ConstantsContainer {
 
+    // hibernate
+    public static final String FLIGHT_BOOKING_PERSISTENCE_UNIT = "flight_booking_unit";
+
     // db specific
     public static final String URL = "jdbc:postgresql://localhost:5432/";
     public static final String DB_NAME = "flight_booking";

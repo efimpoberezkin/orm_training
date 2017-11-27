@@ -7,10 +7,12 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
 
+import static com.epam.homework.orm.ConstantsContainer.*;
+
 public class PassengerDAOImpl implements PassengerDAO {
 
     private EntityManagerFactory entityManagerFactory
-            = Persistence.createEntityManagerFactory("flight_booking_unit");
+            = Persistence.createEntityManagerFactory(FLIGHT_BOOKING_PERSISTENCE_UNIT);
 
     @Override
     public void save(Passenger passenger) {

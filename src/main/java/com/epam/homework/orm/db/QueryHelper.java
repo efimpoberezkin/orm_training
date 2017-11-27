@@ -31,7 +31,7 @@ public class QueryHelper {
                     + "HAVING COUNT(p) < :filter";
 
     private EntityManagerFactory entityManagerFactory
-            = Persistence.createEntityManagerFactory("flight_booking_unit");
+            = Persistence.createEntityManagerFactory(FLIGHT_BOOKING_PERSISTENCE_UNIT);
 
     public List<Passenger> findPassengersByFlightOrderByNameJPQL(long id) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();

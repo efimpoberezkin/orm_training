@@ -15,7 +15,7 @@ public class AirplaneDAOImpl implements AirplaneDAO {
     private static final String FIND_AIRPLANE_BY_ID = "SELECT a FROM Airplane a WHERE id = :id";
 
     private EntityManagerFactory entityManagerFactory
-            = Persistence.createEntityManagerFactory("flight_booking_unit");
+            = Persistence.createEntityManagerFactory(FLIGHT_BOOKING_PERSISTENCE_UNIT);
 
     @Override
     public void save(Airplane airplane) {
