@@ -26,7 +26,7 @@ import static com.epam.homework.orm.ConstantsContainer.*;
         ),
         @NamedNativeQuery(
                 name = Passenger.FIND_PASSENGER_BY_ID,
-                query = "SELECT p.id, p.name, p.gender FROM passenger p WHERE p.id = ?1",
+                query = "SELECT p.id, p.name, p.gender FROM passenger p WHERE p.id = :id",
                 resultClass = Passenger.class
         ),
         @NamedNativeQuery(
@@ -34,7 +34,7 @@ import static com.epam.homework.orm.ConstantsContainer.*;
                 query = "SELECT DISTINCT p.id, p.name, p.gender "
                         + "FROM passenger p "
                         + "INNER JOIN booking b ON p.id = b.passenger_id "
-                        + "WHERE b.flight_id = ?1 "
+                        + "WHERE b.flight_id = :id "
                         + "ORDER BY p.name",
                 resultClass = Passenger.class
         )

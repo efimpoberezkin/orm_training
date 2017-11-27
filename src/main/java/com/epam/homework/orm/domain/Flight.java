@@ -29,7 +29,7 @@ import static com.epam.homework.orm.ConstantsContainer.*;
                         + "FROM Flight f "
                         + "INNER JOIN booking b ON f.id = b.flight_id "
                         + "GROUP BY f.id, f.to_loc, f.from_loc, f.departure, f.arrival "
-                        + "HAVING COUNT(b) < ?1"
+                        + "HAVING COUNT(b) < :filter"
         )
 })
 public class Flight {

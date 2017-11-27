@@ -42,7 +42,7 @@ public class PassengerDAOImpl implements PassengerDAO {
 
         Passenger passenger =
                 entityManager.createNamedQuery(Passenger.FIND_PASSENGER_BY_ID, Passenger.class)
-                        .setParameter(1, id)
+                        .setParameter(ID, id)
                         .getSingleResult();
 
         entityManager.close();

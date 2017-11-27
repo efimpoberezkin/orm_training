@@ -61,7 +61,7 @@ public class QueryHelper {
 
         List<Passenger> passengers =
                 entityManager.createNamedQuery(Passenger.FIND_PASSENGERS_BY_FLIGHT_NATIVE_QUERY, Passenger.class)
-                        .setParameter(1, id)
+                        .setParameter(ID, id)
                         .getResultList();
 
         entityManager.close();
@@ -111,7 +111,7 @@ public class QueryHelper {
 
         List<Tuple> tuples =
                 entityManager.createNamedQuery(Flight.FIND_FLIGHTS_WITH_LESS_THAN_FILTER_PASSENGERS_NATIVE_QUERY, Tuple.class)
-                        .setParameter(1, (long) filter)
+                        .setParameter(FILTER, (long) filter)
                         .getResultList();
 
         List<Object[]> flights = new ArrayList<>();
