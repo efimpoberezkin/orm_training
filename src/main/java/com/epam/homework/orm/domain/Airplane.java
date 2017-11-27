@@ -73,4 +73,13 @@ public class Airplane {
         flights.remove(flight);
         flight.setAirplane(null);
     }
+
+    @Override
+    public String toString() {
+        return "Airplane{" +
+                "id=" + id +
+                ", modelNumber='" + modelNumber + '\'' +
+                ", capacity=" + capacity +
+                '}';
+    }
 }

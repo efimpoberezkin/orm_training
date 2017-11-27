@@ -20,16 +20,31 @@ import static com.epam.homework.orm.ConstantsContainer.*;
                         + "INNER JOIN f.passengers p "
                         + "GROUP BY f "
                         + "HAVING COUNT(p) < :filter"
+        ),
+        @NamedQuery(
+                name = Flight.FIND_AIRPLANE_DETAILS_FOR_FLIGHT_NAMED_QUERY,
+                query = "SELECT f, a "
+                        + "FROM Flight f "
+                        + "INNER JOIN f.airplane a "
+                        + "WHERE f.id = :id"
         )
 })
 @NamedNativeQueries({
         @NamedNativeQuery(
                 name = Flight.FIND_FLIGHTS_WITH_LESS_THAN_FILTER_PASSENGERS_NATIVE_QUERY,
                 query = "SELECT f.id, f.to_loc, f.from_loc, f.departure, f.arrival, COUNT(b) "
-                        + "FROM Flight f "
+                        + "FROM flight f "
                         + "INNER JOIN booking b ON f.id = b.flight_id "
                         + "GROUP BY f.id, f.to_loc, f.from_loc, f.departure, f.arrival "
                         + "HAVING COUNT(b) < :filter"
+        ),
+        @NamedNativeQuery(
+                name = Flight.FIND_AIRPLANE_DETAILS_FOR_FLIGHT_NATIVE_QUERY,
+                query = "SELECT f.id AS flightid, f.to_loc, f.from_loc, f.departure, f.arrival, "
+                        + "a.id AS airplaneid, a.model_number, a.capacity "
+                        + "FROM flight f "
+                        + "INNER JOIN airplane a ON f.airplane_id = a.id "
+                        + "WHERE f.id = :id"
         )
 })
 public class Flight {
@@ -38,6 +53,8 @@ public class Flight {
     public static final String FIND_FLIGHT_BY_ID = "findFlightById";
     public static final String FIND_FLIGHTS_WITH_LESS_THAN_FILTER_PASSENGERS_NAMED_QUERY = "findFlightsWithLessThanFilterPassengersNamedQuery";
     public static final String FIND_FLIGHTS_WITH_LESS_THAN_FILTER_PASSENGERS_NATIVE_QUERY = "findFlightsWithLessThanFilterPassengersNativeQuery";
+    public static final String FIND_AIRPLANE_DETAILS_FOR_FLIGHT_NAMED_QUERY = "findAirplaneDetailsForFlightNamedQuery";
+    public static final String FIND_AIRPLANE_DETAILS_FOR_FLIGHT_NATIVE_QUERY = "findAirplaneDetailsForFlightNativeQuery";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

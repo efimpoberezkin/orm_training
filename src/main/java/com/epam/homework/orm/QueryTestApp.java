@@ -51,5 +51,24 @@ public class QueryTestApp {
         System.out.println("\n--- Criteria API ---");
         List<Tuple> flightsCriteria = queryHelper.findFlightsWithLessThanFilterPassengersCriteriaAPI(filter);
         flightsCriteria.forEach((Tuple t) -> System.out.println(String.format(format, t.get(0), t.get(1))));
+
+        id = 3L;
+        System.out.println("\n*** Finding airplane details for flight ***");
+
+        System.out.println("\n--- JPQL ---");
+        Tuple flightAirplaneJPQL = queryHelper.findAirplaneDetailsForFlightJPQL(id);
+        System.out.println(flightAirplaneJPQL.get(0) + " --- " + flightAirplaneJPQL.get(1));
+
+        System.out.println("\n--- Named Query ---");
+        Tuple flightAirplaneNamed = queryHelper.findAirplaneDetailsForFlightNamedQuery(id);
+        System.out.println(flightAirplaneNamed.get(0) + " --- " + flightAirplaneNamed.get(1));
+
+        System.out.println("\n--- Native Query ---");
+        Object[] flightAirplaneNative = queryHelper.findAirplaneDetailsForFlightNativeQuery(id);
+        System.out.println(flightAirplaneNative[0] + " --- " + flightAirplaneNative[1]);
+
+        System.out.println("\n--- Criteria API ---");
+        Tuple flightAirplaneCriteria = queryHelper.findAirplaneDetailsForFlightCriteriaAPI(id);
+        System.out.println(flightAirplaneCriteria.get(0) + " --- " + flightAirplaneCriteria.get(1));
     }
 }
