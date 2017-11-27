@@ -1,5 +1,6 @@
-package com.epam.homework.orm.db.dao;
+package com.epam.homework.orm.db.dao.impl;
 
+import com.epam.homework.orm.db.dao.AirplaneDAO;
 import com.epam.homework.orm.domain.Airplane;
 
 import javax.persistence.EntityManager;

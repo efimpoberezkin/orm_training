@@ -1,6 +1,6 @@
 package com.epam.homework.orm.db;
 
-import com.epam.homework.orm.db.dao.AirplaneDAOImpl;
+import com.epam.homework.orm.db.dao.impl.AirplaneDAOImpl;
 import com.epam.homework.orm.domain.*;
 import org.apache.log4j.Logger;
 
