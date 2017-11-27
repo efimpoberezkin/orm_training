@@ -127,14 +127,7 @@ public class QueryHelper {
 
         List<Object[]> flights = new ArrayList<>();
         for (Tuple t : tuples) {
-            Flight flight = new Flight();
-            flight.setId(((BigInteger) t.get(0)).longValue());
-            flight.setTo((String) t.get(1));
-            flight.setFrom((String) t.get(2));
-            flight.setDeparture((Timestamp) t.get(3));
-            flight.setArrival((Timestamp) t.get(4));
-            Object[] objArr = new Object[]{flight, t.get(5)};
-            flights.add(objArr);
+            flights.add(flightAndPassengerCountMapper(t));
         }
 
         entityManager.close();
@@ -185,19 +178,7 @@ public class QueryHelper {
                 .setParameter(ID, flightId)
                 .getSingleResult();
 
-        Flight flight = new Flight();
-        flight.setId(((BigInteger) result.get(0)).longValue());
-        flight.setTo((String) result.get(1));
-        flight.setFrom((String) result.get(2));
-        flight.setDeparture((Timestamp) result.get(3));
-        flight.setArrival((Timestamp) result.get(4));
-
-        Airplane airplane = new Airplane();
-        airplane.setId(((BigInteger) result.get(5)).longValue());
-        airplane.setModelNumber((String) result.get(6));
-        airplane.setCapacity((Integer) result.get(7));
-
-        Object[] objArr = new Object[]{flight, airplane};
+        Object[] objArr = flightAndAirplaneMapper(result);
 
         entityManager.close();
         return objArr;
@@ -215,5 +196,32 @@ public class QueryHelper {
 
         entityManager.close();
         return result;
+    }
+
+    private Object[] flightAndPassengerCountMapper(Tuple tuple) {
+        Flight flight = new Flight();
+        flight.setId(((BigInteger) tuple.get(0)).longValue());
+        flight.setTo((String) tuple.get(1));
+        flight.setFrom((String) tuple.get(2));
+        flight.setDeparture((Timestamp) tuple.get(3));
+        flight.setArrival((Timestamp) tuple.get(4));
+
+        return new Object[]{flight, tuple.get(5)};
+    }
+
+    private Object[] flightAndAirplaneMapper(Tuple tuple) {
+        Flight flight = new Flight();
+        flight.setId(((BigInteger) tuple.get(0)).longValue());
+        flight.setTo((String) tuple.get(1));
+        flight.setFrom((String) tuple.get(2));
+        flight.setDeparture((Timestamp) tuple.get(3));
+        flight.setArrival((Timestamp) tuple.get(4));
+
+        Airplane airplane = new Airplane();
+        airplane.setId(((BigInteger) tuple.get(5)).longValue());
+        airplane.setModelNumber((String) tuple.get(6));
+        airplane.setCapacity((Integer) tuple.get(7));
+
+        return new Object[]{flight, airplane};
     }
 }
