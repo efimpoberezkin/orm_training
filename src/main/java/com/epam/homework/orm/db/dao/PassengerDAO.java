@@ -19,5 +19,5 @@ public interface PassengerDAO extends DAO<Passenger> {
     Passenger update(Passenger passenger);
 
     @Override
-    void delete(long id);
+    void delete(long id) throws UnsupportedOperationException;
 }

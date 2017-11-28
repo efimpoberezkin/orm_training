@@ -63,7 +63,7 @@ public class PassengerDAOImpl implements PassengerDAO {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(long id) throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Operation not supported: passenger has to be deleted via flight");
     }
 }

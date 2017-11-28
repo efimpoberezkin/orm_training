@@ -7,10 +7,10 @@ import java.util.List;
 public interface PassengerContactInfoDAO extends DAO<PassengerContactInfo> {
 
     @Override
-    void save(PassengerContactInfo passengerContactInfo);
+    void save(PassengerContactInfo passengerContactInfo) throws UnsupportedOperationException;
 
     @Override
-    List<PassengerContactInfo> findAll();
+    List<PassengerContactInfo> findAll() throws UnsupportedOperationException;
 
     @Override
     PassengerContactInfo findBy(long id);
