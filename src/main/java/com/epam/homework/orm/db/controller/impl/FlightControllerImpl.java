@@ -1,4 +1,4 @@
-package com.epam.homework.orm.db.controller;
+package com.epam.homework.orm.db.controller.impl;
 
 import com.epam.homework.orm.db.service.impl.FlightServiceImpl;
 import com.epam.homework.orm.domain.Flight;
