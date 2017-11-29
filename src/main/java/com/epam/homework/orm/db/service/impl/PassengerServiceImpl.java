@@ -1,9 +1,13 @@
 package com.epam.homework.orm.db.service.impl;
 
+import com.epam.homework.orm.db.dao.DAO;
 import com.epam.homework.orm.db.dao.impl.PassengerDAOImpl;
 import com.epam.homework.orm.db.service.PassengerService;
+import com.epam.homework.orm.db.service.ServiceException;
 import com.epam.homework.orm.domain.Passenger;
+import com.epam.homework.orm.domain.PassengerContactInfo;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 public class PassengerServiceImpl implements PassengerService {
@@ -31,5 +35,17 @@ public class PassengerServiceImpl implements PassengerService {
     @Override
     public void delete(long id) throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Operation not supported: passenger has to be deleted via flight");
+    }
+
+    //TODO make @Transactional after switching to Spring
+    public void addContactInfoToPassenger(long passengerId, PassengerContactInfo info) {
+        try {
+            DAO<Passenger> passengerDAO = new PassengerDAOImpl();
+            Passenger passenger = passengerDAO.findBy(passengerId);
+            passenger.setPassengerContactInfo(info);
+            passengerDAO.update(passenger);
+        } catch (NoResultException e) {
+            throw new ServiceException("Failed to add contact info to passenger: could not find passenger by id " + passengerId, e);
+        }
     }
 }
