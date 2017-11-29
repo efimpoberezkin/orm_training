@@ -1,5 +1,7 @@
 package com.epam.homework.orm.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 import java.util.HashSet;
@@ -64,9 +66,10 @@ public class Passenger {
     )
     private PassengerContactInfo passengerContactInfo;
 
+    @JsonIgnore
     @ManyToMany(
             mappedBy = PASSENGERS,
-            fetch = FetchType.EAGER,
+            fetch = FetchType.EAGER, //TODO Change back to LAZY after switching to Spring
             cascade = {
                     CascadeType.PERSIST
             })

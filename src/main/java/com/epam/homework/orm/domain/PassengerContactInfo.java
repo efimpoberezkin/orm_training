@@ -1,5 +1,7 @@
 package com.epam.homework.orm.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 import static com.epam.homework.orm.ConstantsContainer.*;
@@ -17,6 +19,7 @@ public class PassengerContactInfo {
     @Column
     private String phone;
 
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
     private Passenger passenger;
