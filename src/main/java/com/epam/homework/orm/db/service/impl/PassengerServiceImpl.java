@@ -23,8 +23,12 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     @Override
-    public Passenger findBy(long id) {
-        return new PassengerDAOImpl().findBy(id);
+    public Passenger findBy(long id) throws ServiceException {
+        try {
+            return new PassengerDAOImpl().findBy(id);
+        } catch (NoResultException e) {
+            throw new ServiceException("Failed to find passenger by id " + id, e);
+        }
     }
 
     @Override
@@ -38,7 +42,7 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     //TODO make @Transactional after switching to Spring
-    public void addContactInfoToPassenger(long passengerId, PassengerContactInfo info) {
+    public void addContactInfoToPassenger(long passengerId, PassengerContactInfo info) throws ServiceException {
         try {
             DAO<Passenger> passengerDAO = new PassengerDAOImpl();
             Passenger passenger = passengerDAO.findBy(passengerId);

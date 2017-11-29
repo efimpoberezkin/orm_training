@@ -24,8 +24,12 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
-    public Flight findBy(long id) {
-        return new FlightDAOImpl().findBy(id);
+    public Flight findBy(long id) throws ServiceException {
+        try {
+            return new FlightDAOImpl().findBy(id);
+        } catch (NoResultException e) {
+            throw new ServiceException("Failed to find flight by id " + id, e);
+        }
     }
 
     @Override
@@ -34,12 +38,16 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
-    public void delete(long id) {
-        new FlightDAOImpl().delete(id);
+    public void delete(long id) throws ServiceException {
+        try {
+            new FlightDAOImpl().delete(id);
+        } catch (NoResultException e) {
+            throw new ServiceException("Failed to find flight by id " + id, e);
+        }
     }
 
     //TODO make @Transactional after switching to Spring
-    public void addPassengerToFlight(long flightId, long passengerId) {
+    public void addPassengerToFlight(long flightId, long passengerId) throws ServiceException {
         try {
             DAO<Flight> flightDAO = new FlightDAOImpl();
             Flight flight = flightDAO.findBy(flightId);
@@ -56,7 +64,7 @@ public class FlightServiceImpl implements FlightService {
     }
 
     //TODO make @Transactional after switching to Spring
-    public void removePassengerFromFlight(long flightId, long passengerId) {
+    public void removePassengerFromFlight(long flightId, long passengerId) throws ServiceException {
         try {
             DAO<Flight> flightDAO = new FlightDAOImpl();
             Flight flight = flightDAO.findBy(flightId);

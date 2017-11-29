@@ -2,8 +2,10 @@ package com.epam.homework.orm.db.service.impl;
 
 import com.epam.homework.orm.db.dao.impl.PassengerContactInfoDAOImpl;
 import com.epam.homework.orm.db.service.PassengerContactInfoService;
+import com.epam.homework.orm.db.service.ServiceException;
 import com.epam.homework.orm.domain.PassengerContactInfo;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 public class PassengerContactInfoServiceImpl implements PassengerContactInfoService {
@@ -29,7 +31,11 @@ public class PassengerContactInfoServiceImpl implements PassengerContactInfoServ
     }
 
     @Override
-    public void delete(long id) {
-        new PassengerContactInfoDAOImpl().delete(id);
+    public void delete(long id) throws ServiceException {
+        try {
+            new PassengerContactInfoDAOImpl().delete(id);
+        } catch (NoResultException e) {
+            throw new ServiceException("Failed to find passenger contact info by id " + id, e);
+        }
     }
 }
