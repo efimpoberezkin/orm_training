@@ -57,4 +57,30 @@ public class FlightControllerImpl implements FlightController {
             throw new ControllerException("Failed to delete flight", e);
         }
     }
+
+    @PUT
+    @Path("/{flightid}/passengers/{passengerid}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Flight addPassengerToFlight(
+            @PathParam("flightid") long flightId,
+            @PathParam("passengerid") long passengerId) throws ControllerException {
+        try {
+            return new FlightServiceImpl().addPassengerToFlight(flightId, passengerId);
+        } catch (ServiceException e) {
+            throw new ControllerException("Failed to add passenger to flight", e);
+        }
+    }
+
+    @DELETE
+    @Path("/{flightid}/passengers/{passengerid}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public void removePassengerFromFlight(
+            @PathParam("flightid") long flightId,
+            @PathParam("passengerid") long passengerId) throws ControllerException {
+        try {
+            new FlightServiceImpl().removePassengerFromFlight(flightId, passengerId);
+        } catch (ServiceException e) {
+            throw new ControllerException("Failed to remove passenger from flight", e);
+        }
+    }
 }

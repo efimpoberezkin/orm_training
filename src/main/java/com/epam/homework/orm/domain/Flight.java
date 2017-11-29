@@ -86,7 +86,6 @@ public class Flight {
     @JoinColumn(name = AIRPLANE_ID)
     private Airplane airplane;
 
-    @JsonIgnore
     @ManyToMany(
             fetch = FetchType.EAGER, //TODO Change back to LAZY after switching to Spring
             cascade = {

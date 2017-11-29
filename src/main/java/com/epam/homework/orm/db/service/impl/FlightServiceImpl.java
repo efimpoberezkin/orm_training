@@ -47,14 +47,14 @@ public class FlightServiceImpl implements FlightService {
     }
 
     //TODO make @Transactional after switching to Spring
-    public void addPassengerToFlight(long flightId, long passengerId) throws ServiceException {
+    public Flight addPassengerToFlight(long flightId, long passengerId) throws ServiceException {
         try {
             DAO<Flight> flightDAO = new FlightDAOImpl();
             Flight flight = flightDAO.findBy(flightId);
             try {
                 Passenger passenger = new PassengerDAOImpl().findBy(passengerId);
                 flight.addPassenger(passenger);
-                flightDAO.update(flight);
+                return flightDAO.update(flight);
             } catch (NoResultException e) {
                 throw new ServiceException("Failed to add passenger to flight: could not find passenger by id " + passengerId, e);
             }
@@ -68,10 +68,15 @@ public class FlightServiceImpl implements FlightService {
         try {
             DAO<Flight> flightDAO = new FlightDAOImpl();
             Flight flight = flightDAO.findBy(flightId);
-            flight.getPassengers().removeIf(passenger -> passenger.getId() == passengerId);
-            flightDAO.update(flight);
+            try {
+                Passenger passenger = new PassengerDAOImpl().findBy(passengerId);
+                flight.removePassenger(passenger);
+                flightDAO.update(flight);
+            } catch (NoResultException e) {
+                throw new ServiceException("Failed to remove passenger from flight: could not find passenger by id " + passengerId, e);
+            }
         } catch (NoResultException e) {
-            throw new ServiceException("Failed to add passenger to flight: could not find flight by id " + flightId, e);
+            throw new ServiceException("Failed to remove passenger from flight: could not find flight by id " + flightId, e);
         }
     }
 }
