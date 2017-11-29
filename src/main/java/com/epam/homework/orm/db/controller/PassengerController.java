@@ -7,13 +7,13 @@ import java.util.List;
 public interface PassengerController extends Controller<Passenger> {
 
     @Override
-    void add(Passenger passenger);
-
-    @Override
     List<Passenger> getAll();
 
     @Override
     Passenger getById(long id);
+
+    @Override
+    void add(Passenger passenger);
 
     @Override
     Passenger update(Passenger passenger);
