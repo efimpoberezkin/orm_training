@@ -50,7 +50,7 @@ public class AirplaneControllerImpl implements AirplaneController {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Override
-    public void delete(@PathParam("id") long id) {
+    public void delete(@PathParam("id") long id) throws ControllerException {
         try {
             new AirplaneServiceImpl().delete(id);
         } catch (ServiceException e) {

@@ -24,7 +24,7 @@ public class FlightControllerImpl implements FlightController {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Override
-    public Flight getById(@PathParam("id") long id) {
+    public Flight getById(@PathParam("id") long id) throws ControllerException {
         try {
             return new FlightServiceImpl().findBy(id);
         } catch (ServiceException e) {
@@ -50,7 +50,7 @@ public class FlightControllerImpl implements FlightController {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Override
-    public void delete(@PathParam("id") long id) {
+    public void delete(@PathParam("id") long id) throws ControllerException {
         try {
             new FlightServiceImpl().delete(id);
         } catch (ServiceException e) {
