@@ -82,7 +82,7 @@ public class Flight {
     private Airplane airplane;
 
     @ManyToMany(
-            fetch = FetchType.LAZY,
+            fetch = FetchType.EAGER,
             cascade = {
                     CascadeType.PERSIST,
                     CascadeType.MERGE

@@ -66,10 +66,9 @@ public class Passenger {
 
     @ManyToMany(
             mappedBy = PASSENGERS,
-            fetch = FetchType.LAZY,
+            fetch = FetchType.EAGER,
             cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
+                    CascadeType.PERSIST
             })
     private Set<Flight> flights = new HashSet<>();
 
