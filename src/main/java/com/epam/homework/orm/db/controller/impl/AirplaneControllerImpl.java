@@ -1,6 +1,8 @@
 package com.epam.homework.orm.db.controller.impl;
 
 import com.epam.homework.orm.db.controller.AirplaneController;
+import com.epam.homework.orm.db.controller.ControllerException;
+import com.epam.homework.orm.db.service.ServiceException;
 import com.epam.homework.orm.db.service.impl.AirplaneServiceImpl;
 import com.epam.homework.orm.domain.Airplane;
 
@@ -22,8 +24,12 @@ public class AirplaneControllerImpl implements AirplaneController {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Override
-    public Airplane getById(@PathParam("id") long id) {
-        return new AirplaneServiceImpl().findBy(id);
+    public Airplane getById(@PathParam("id") long id) throws ControllerException {
+        try {
+            return new AirplaneServiceImpl().findBy(id);
+        } catch (ServiceException e) {
+            throw new ControllerException("Failed to get airplane", e);
+        }
     }
 
     @POST
@@ -45,6 +51,10 @@ public class AirplaneControllerImpl implements AirplaneController {
     @Produces(MediaType.APPLICATION_JSON)
     @Override
     public void delete(@PathParam("id") long id) {
-        new AirplaneServiceImpl().delete(id);
+        try {
+            new AirplaneServiceImpl().delete(id);
+        } catch (ServiceException e) {
+            throw new ControllerException("Failed to delete airplane", e);
+        }
     }
 }
