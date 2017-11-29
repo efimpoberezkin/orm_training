@@ -7,13 +7,13 @@ import java.util.List;
 public interface AirplaneController extends Controller<Airplane> {
 
     @Override
-    void save(Airplane airplane);
+    void add(Airplane airplane);
 
     @Override
-    List<Airplane> findAll();
+    List<Airplane> getAll();
 
     @Override
-    Airplane findBy(long id);
+    Airplane getById(long id);
 
     @Override
     Airplane update(Airplane airplane);

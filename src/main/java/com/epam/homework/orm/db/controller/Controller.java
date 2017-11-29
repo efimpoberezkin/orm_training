@@ -4,11 +4,11 @@ import java.util.List;
 
 public interface Controller<T> {
 
-    void save(T object);
+    void add(T object);
 
-    List<T> findAll();
+    List<T> getAll();
 
-    T findBy(long id);
+    T getById(long id);
 
     T update(T object);
 

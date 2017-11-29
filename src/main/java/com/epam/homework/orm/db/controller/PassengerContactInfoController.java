@@ -7,13 +7,13 @@ import java.util.List;
 public interface PassengerContactInfoController extends Controller<PassengerContactInfo> {
 
     @Override
-    void save(PassengerContactInfo passengerContactInfo) throws UnsupportedOperationException;
+    void add(PassengerContactInfo passengerContactInfo) throws UnsupportedOperationException;
 
     @Override
-    List<PassengerContactInfo> findAll() throws UnsupportedOperationException;
+    List<PassengerContactInfo> getAll() throws UnsupportedOperationException;
 
     @Override
-    PassengerContactInfo findBy(long id);
+    PassengerContactInfo getById(long id);
 
     @Override
     PassengerContactInfo update(PassengerContactInfo passengerContactInfo);
