@@ -1,5 +1,7 @@
 package com.epam.homework.orm.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 import java.util.ArrayList;
@@ -21,6 +23,7 @@ public class Airplane {
     @Column(nullable = false)
     private int capacity;
 
+    @JsonIgnore
     @OneToMany(
             mappedBy = AIRPLANE,
             fetch = FetchType.LAZY,
