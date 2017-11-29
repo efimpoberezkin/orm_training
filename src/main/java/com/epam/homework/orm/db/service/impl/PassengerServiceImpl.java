@@ -13,8 +13,8 @@ import java.util.List;
 public class PassengerServiceImpl implements PassengerService {
 
     @Override
-    public void save(Passenger passenger) {
-        new PassengerDAOImpl().save(passenger);
+    public Passenger save(Passenger passenger) {
+        return new PassengerDAOImpl().save(passenger);
     }
 
     @Override

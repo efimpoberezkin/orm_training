@@ -16,7 +16,7 @@ public class PassengerDAOImpl implements PassengerDAO {
             = Persistence.createEntityManagerFactory(FLIGHT_BOOKING_PERSISTENCE_UNIT);
 
     @Override
-    public void save(Passenger passenger) {
+    public Passenger save(Passenger passenger) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         entityManager.getTransaction().begin();
@@ -24,6 +24,7 @@ public class PassengerDAOImpl implements PassengerDAO {
         entityManager.getTransaction().commit();
 
         entityManager.close();
+        return passenger;
     }
 
     @Override

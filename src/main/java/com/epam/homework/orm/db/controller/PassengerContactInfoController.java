@@ -13,7 +13,7 @@ public interface PassengerContactInfoController extends Controller<PassengerCont
     PassengerContactInfo getById(long id);
 
     @Override
-    void add(PassengerContactInfo passengerContactInfo) throws UnsupportedOperationException;
+    PassengerContactInfo add(PassengerContactInfo passengerContactInfo) throws UnsupportedOperationException;
 
     @Override
     PassengerContactInfo update(PassengerContactInfo passengerContactInfo);

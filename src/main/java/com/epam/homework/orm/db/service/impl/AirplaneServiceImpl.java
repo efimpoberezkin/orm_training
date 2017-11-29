@@ -11,8 +11,8 @@ import java.util.List;
 public class AirplaneServiceImpl implements AirplaneService {
 
     @Override
-    public void save(Airplane airplane) {
-        new AirplaneDAOImpl().save(airplane);
+    public Airplane save(Airplane airplane) {
+        return new AirplaneDAOImpl().save(airplane);
     }
 
     @Override

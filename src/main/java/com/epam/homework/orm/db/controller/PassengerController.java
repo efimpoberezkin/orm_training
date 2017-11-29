@@ -13,7 +13,7 @@ public interface PassengerController extends Controller<Passenger> {
     Passenger getById(long id);
 
     @Override
-    void add(Passenger passenger);
+    Passenger add(Passenger passenger);
 
     @Override
     Passenger update(Passenger passenger);

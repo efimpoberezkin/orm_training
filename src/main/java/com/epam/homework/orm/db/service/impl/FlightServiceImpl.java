@@ -14,8 +14,8 @@ import java.util.List;
 public class FlightServiceImpl implements FlightService {
 
     @Override
-    public void save(Flight flight) {
-        new FlightDAOImpl().save(flight);
+    public Flight save(Flight flight) {
+        return new FlightDAOImpl().save(flight);
     }
 
     @Override

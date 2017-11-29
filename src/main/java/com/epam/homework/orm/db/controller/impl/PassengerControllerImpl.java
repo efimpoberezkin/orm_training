@@ -35,8 +35,8 @@ public class PassengerControllerImpl implements PassengerController {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Override
-    public void add(Passenger passenger) {
-        new PassengerServiceImpl().save(passenger);
+    public Passenger add(Passenger passenger) {
+        return new PassengerServiceImpl().save(passenger);
     }
 
     @PUT

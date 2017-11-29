@@ -7,7 +7,7 @@ import java.util.List;
 public interface PassengerContactInfoService extends DatabaseService<PassengerContactInfo> {
 
     @Override
-    void save(PassengerContactInfo passengerContactInfo) throws UnsupportedOperationException;
+    PassengerContactInfo save(PassengerContactInfo passengerContactInfo) throws UnsupportedOperationException;
 
     @Override
     List<PassengerContactInfo> findAll() throws UnsupportedOperationException;

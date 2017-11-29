@@ -31,7 +31,7 @@ public class PassengerContactInfoControllerImpl implements PassengerContactInfoC
     }
 
     @Override
-    public void add(PassengerContactInfo passengerContactInfo) throws UnsupportedOperationException {
+    public PassengerContactInfo add(PassengerContactInfo passengerContactInfo) throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Operation not supported: passenger info has to be saved via passenger");
     }
 

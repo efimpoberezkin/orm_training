@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface DAO<T> {
 
-    void save(T object);
+    T save(T object);
 
     List<T> findAll();
 

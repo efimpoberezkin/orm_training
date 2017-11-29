@@ -35,8 +35,8 @@ public class FlightControllerImpl implements FlightController {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Override
-    public void add(Flight flight) {
-        new FlightServiceImpl().save(flight);
+    public Flight add(Flight flight) {
+        return new FlightServiceImpl().save(flight);
     }
 
     @PUT

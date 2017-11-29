@@ -13,7 +13,7 @@ public interface FlightController extends Controller<Flight> {
     Flight getById(long id);
 
     @Override
-    void add(Flight flight);
+    Flight add(Flight flight);
 
     @Override
     Flight update(Flight flight);

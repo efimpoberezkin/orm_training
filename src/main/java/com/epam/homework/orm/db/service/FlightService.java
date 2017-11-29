@@ -7,7 +7,7 @@ import java.util.List;
 public interface FlightService extends DatabaseService<Flight> {
 
     @Override
-    void save(Flight flight);
+    Flight save(Flight flight);
 
     @Override
     List<Flight> findAll();

@@ -11,7 +11,7 @@ import java.util.List;
 public class PassengerContactInfoServiceImpl implements PassengerContactInfoService {
 
     @Override
-    public void save(PassengerContactInfo passengerContactInfo) throws UnsupportedOperationException {
+    public PassengerContactInfo save(PassengerContactInfo passengerContactInfo) throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Operation not supported: passenger info has to be saved via passenger");
     }
 

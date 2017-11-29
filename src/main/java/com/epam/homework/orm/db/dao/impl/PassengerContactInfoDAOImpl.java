@@ -19,7 +19,7 @@ public class PassengerContactInfoDAOImpl implements PassengerContactInfoDAO {
             = Persistence.createEntityManagerFactory(FLIGHT_BOOKING_PERSISTENCE_UNIT);
 
     @Override
-    public void save(PassengerContactInfo passengerContactInfo) throws UnsupportedOperationException {
+    public PassengerContactInfo save(PassengerContactInfo passengerContactInfo) throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Operation not supported: passenger info has to be saved via passenger");
     }
 

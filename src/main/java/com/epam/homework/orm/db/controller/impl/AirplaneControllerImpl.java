@@ -35,8 +35,8 @@ public class AirplaneControllerImpl implements AirplaneController {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Override
-    public void add(Airplane airplane) {
-        new AirplaneServiceImpl().save(airplane);
+    public Airplane add(Airplane airplane) {
+        return new AirplaneServiceImpl().save(airplane);
     }
 
     @PUT

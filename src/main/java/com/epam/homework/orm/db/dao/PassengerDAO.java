@@ -7,7 +7,7 @@ import java.util.List;
 public interface PassengerDAO extends DAO<Passenger> {
 
     @Override
-    void save(Passenger passenger);
+    Passenger save(Passenger passenger);
 
     @Override
     List<Passenger> findAll();

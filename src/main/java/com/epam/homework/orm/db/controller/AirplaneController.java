@@ -13,7 +13,7 @@ public interface AirplaneController extends Controller<Airplane> {
     Airplane getById(long id);
 
     @Override
-    void add(Airplane airplane);
+    Airplane add(Airplane airplane);
 
     @Override
     Airplane update(Airplane airplane);

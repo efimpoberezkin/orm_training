@@ -8,7 +8,7 @@ public interface Controller<T> {
 
     T getById(long id);
 
-    void add(T object);
+    T add(T object);
 
     T update(T object);
 

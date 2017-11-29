@@ -7,7 +7,7 @@ import java.util.List;
 public interface FlightDAO extends DAO<Flight> {
 
     @Override
-    void save(Flight flight);
+    Flight save(Flight flight);
 
     @Override
     List<Flight> findAll();

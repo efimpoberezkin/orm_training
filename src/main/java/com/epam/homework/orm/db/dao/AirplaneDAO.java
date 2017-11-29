@@ -7,7 +7,7 @@ import java.util.List;
 public interface AirplaneDAO extends DAO<Airplane> {
 
     @Override
-    void save(Airplane airplane);
+    Airplane save(Airplane airplane);
 
     @Override
     List<Airplane> findAll();
