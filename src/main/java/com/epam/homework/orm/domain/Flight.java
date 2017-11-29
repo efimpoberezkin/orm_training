@@ -1,5 +1,8 @@
 package com.epam.homework.orm.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 import java.sql.Timestamp;
@@ -66,14 +69,16 @@ public class Flight {
     @Column(name = TO_LOC, nullable = false)
     private String to;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(nullable = false)
     private Timestamp departure;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(nullable = false)
     private Timestamp arrival;
 
     @ManyToOne(
-            fetch = FetchType.LAZY,
+            fetch = FetchType.EAGER, //TODO Change back to LAZY after switching to Spring
             cascade = {
                     CascadeType.PERSIST,
                     CascadeType.MERGE
@@ -81,8 +86,9 @@ public class Flight {
     @JoinColumn(name = AIRPLANE_ID)
     private Airplane airplane;
 
+    @JsonIgnore
     @ManyToMany(
-            fetch = FetchType.EAGER,
+            fetch = FetchType.EAGER, //TODO Change back to LAZY after switching to Spring
             cascade = {
                     CascadeType.PERSIST,
                     CascadeType.MERGE
