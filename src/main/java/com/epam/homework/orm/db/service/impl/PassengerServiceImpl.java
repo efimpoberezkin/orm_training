@@ -42,12 +42,12 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     //TODO make @Transactional after switching to Spring
-    public void addContactInfoToPassenger(long passengerId, PassengerContactInfo info) throws ServiceException {
+    public Passenger addContactInfoToPassenger(long passengerId, PassengerContactInfo info) throws ServiceException {
         try {
             DAO<Passenger> passengerDAO = new PassengerDAOImpl();
             Passenger passenger = passengerDAO.findBy(passengerId);
             passenger.setPassengerContactInfo(info);
-            passengerDAO.update(passenger);
+            return passengerDAO.update(passenger);
         } catch (NoResultException e) {
             throw new ServiceException("Failed to add contact info to passenger: could not find passenger by id " + passengerId, e);
         }

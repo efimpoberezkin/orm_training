@@ -5,6 +5,7 @@ import com.epam.homework.orm.db.controller.PassengerController;
 import com.epam.homework.orm.db.service.ServiceException;
 import com.epam.homework.orm.db.service.impl.PassengerServiceImpl;
 import com.epam.homework.orm.domain.Passenger;
+import com.epam.homework.orm.domain.PassengerContactInfo;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -49,5 +50,18 @@ public class PassengerControllerImpl implements PassengerController {
     @Override
     public void delete(@PathParam("id") long id) throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Operation not supported: passenger has to be deleted via flight");
+    }
+
+    @PUT
+    @Path("/{passengerid}/passengerinfo")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Passenger addPassengerToFlight(
+            @PathParam("passengerid") long passengerId,
+            PassengerContactInfo passengerContactInfo) throws ControllerException {
+        try {
+            return new PassengerServiceImpl().addContactInfoToPassenger(passengerId, passengerContactInfo);
+        } catch (ServiceException e) {
+            throw new ControllerException("Failed to add contact info to passenger", e);
+        }
     }
 }
