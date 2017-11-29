@@ -21,8 +21,12 @@ public class PassengerContactInfoServiceImpl implements PassengerContactInfoServ
     }
 
     @Override
-    public PassengerContactInfo findBy(long id) {
-        return new PassengerContactInfoDAOImpl().findBy(id);
+    public PassengerContactInfo findBy(long id) throws ServiceException {
+        try {
+            return new PassengerContactInfoDAOImpl().findBy(id);
+        } catch (NoResultException e) {
+            throw new ServiceException("Failed to find passenger contact info by id " + id, e);
+        }
     }
 
     @Override
