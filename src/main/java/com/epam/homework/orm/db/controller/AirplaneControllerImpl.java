@@ -8,7 +8,7 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @Path("/airplanes")
-public class AirplaneController {
+public class AirplaneControllerImpl {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
