@@ -46,9 +46,6 @@ public class PassengerControllerImpl implements PassengerController {
         return new PassengerServiceImpl().update(passenger);
     }
 
-    @DELETE
-    @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
     @Override
     public void delete(@PathParam("id") long id) throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Operation not supported: passenger has to be deleted via flight");
