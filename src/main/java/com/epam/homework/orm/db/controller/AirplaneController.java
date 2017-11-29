@@ -38,7 +38,7 @@ public class AirplaneController {
     @DELETE
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public void deleteCountry(@PathParam("id") long id) {
+    public void deleteAirplane(@PathParam("id") long id) {
         new AirplaneServiceImpl().delete(id);
     }
 }
