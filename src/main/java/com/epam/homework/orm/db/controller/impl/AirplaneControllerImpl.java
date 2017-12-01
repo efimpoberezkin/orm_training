@@ -2,6 +2,7 @@ package com.epam.homework.orm.db.controller.impl;
 
 import com.epam.homework.orm.db.controller.AirplaneController;
 import com.epam.homework.orm.db.controller.ControllerException;
+import com.epam.homework.orm.db.service.DatabaseService;
 import com.epam.homework.orm.db.service.ServiceException;
 import com.epam.homework.orm.db.service.impl.AirplaneServiceImpl;
 import com.epam.homework.orm.domain.Airplane;
@@ -13,11 +14,13 @@ import java.util.List;
 @Path("/airplanes")
 public class AirplaneControllerImpl implements AirplaneController {
 
+    private final DatabaseService<Airplane> airplaneService = new AirplaneServiceImpl();
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Override
     public List<Airplane> getAll() {
-        return new AirplaneServiceImpl().findAll();
+        return airplaneService.findAll();
     }
 
     @GET
@@ -26,7 +29,7 @@ public class AirplaneControllerImpl implements AirplaneController {
     @Override
     public Airplane getById(@PathParam("id") long id) throws ControllerException {
         try {
-            return new AirplaneServiceImpl().findBy(id);
+            return airplaneService.findBy(id);
         } catch (ServiceException e) {
             throw new ControllerException("Failed to get airplane", e);
         }
@@ -36,14 +39,14 @@ public class AirplaneControllerImpl implements AirplaneController {
     @Produces(MediaType.APPLICATION_JSON)
     @Override
     public Airplane add(Airplane airplane) {
-        return new AirplaneServiceImpl().save(airplane);
+        return airplaneService.save(airplane);
     }
 
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Override
     public Airplane update(Airplane airplane) {
-        return new AirplaneServiceImpl().update(airplane);
+        return airplaneService.update(airplane);
     }
 
     @DELETE
@@ -52,7 +55,7 @@ public class AirplaneControllerImpl implements AirplaneController {
     @Override
     public void delete(@PathParam("id") long id) throws ControllerException {
         try {
-            new AirplaneServiceImpl().delete(id);
+            airplaneService.delete(id);
         } catch (ServiceException e) {
             throw new ControllerException("Failed to delete airplane", e);
         }

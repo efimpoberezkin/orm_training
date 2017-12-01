@@ -13,11 +13,13 @@ import java.util.List;
 @Path("/flights")
 public class FlightControllerImpl implements FlightController {
 
+    private final FlightServiceImpl flightService = new FlightServiceImpl();
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Override
     public List<Flight> getAll() {
-        return new FlightServiceImpl().findAll();
+        return flightService.findAll();
     }
 
     @GET
@@ -26,7 +28,7 @@ public class FlightControllerImpl implements FlightController {
     @Override
     public Flight getById(@PathParam("id") long id) throws ControllerException {
         try {
-            return new FlightServiceImpl().findBy(id);
+            return flightService.findBy(id);
         } catch (ServiceException e) {
             throw new ControllerException("Failed to get flight", e);
         }
@@ -36,14 +38,14 @@ public class FlightControllerImpl implements FlightController {
     @Produces(MediaType.APPLICATION_JSON)
     @Override
     public Flight add(Flight flight) {
-        return new FlightServiceImpl().save(flight);
+        return flightService.save(flight);
     }
 
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Override
     public Flight update(Flight flight) {
-        return new FlightServiceImpl().update(flight);
+        return flightService.update(flight);
     }
 
     @DELETE
@@ -52,7 +54,7 @@ public class FlightControllerImpl implements FlightController {
     @Override
     public void delete(@PathParam("id") long id) throws ControllerException {
         try {
-            new FlightServiceImpl().delete(id);
+            flightService.delete(id);
         } catch (ServiceException e) {
             throw new ControllerException("Failed to delete flight", e);
         }
@@ -65,7 +67,7 @@ public class FlightControllerImpl implements FlightController {
             @PathParam("flightid") long flightId,
             @PathParam("passengerid") long passengerId) throws ControllerException {
         try {
-            return new FlightServiceImpl().addPassengerToFlight(flightId, passengerId);
+            return flightService.addPassengerToFlight(flightId, passengerId);
         } catch (ServiceException e) {
             throw new ControllerException("Failed to add passenger to flight", e);
         }
@@ -78,7 +80,7 @@ public class FlightControllerImpl implements FlightController {
             @PathParam("flightid") long flightId,
             @PathParam("passengerid") long passengerId) throws ControllerException {
         try {
-            new FlightServiceImpl().removePassengerFromFlight(flightId, passengerId);
+            flightService.removePassengerFromFlight(flightId, passengerId);
         } catch (ServiceException e) {
             throw new ControllerException("Failed to remove passenger from flight", e);
         }

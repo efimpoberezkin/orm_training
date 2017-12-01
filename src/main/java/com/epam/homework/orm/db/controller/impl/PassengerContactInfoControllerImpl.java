@@ -2,6 +2,7 @@ package com.epam.homework.orm.db.controller.impl;
 
 import com.epam.homework.orm.db.controller.ControllerException;
 import com.epam.homework.orm.db.controller.PassengerContactInfoController;
+import com.epam.homework.orm.db.service.DatabaseService;
 import com.epam.homework.orm.db.service.ServiceException;
 import com.epam.homework.orm.db.service.impl.PassengerContactInfoServiceImpl;
 import com.epam.homework.orm.domain.PassengerContactInfo;
@@ -12,6 +13,8 @@ import java.util.List;
 
 @Path("/passengerinfo")
 public class PassengerContactInfoControllerImpl implements PassengerContactInfoController {
+
+    private final DatabaseService<PassengerContactInfo> passengerContactInfoService = new PassengerContactInfoServiceImpl();
 
     @Override
     public List<PassengerContactInfo> getAll() throws UnsupportedOperationException {
@@ -24,7 +27,7 @@ public class PassengerContactInfoControllerImpl implements PassengerContactInfoC
     @Override
     public PassengerContactInfo getById(@PathParam("id") long id) throws ControllerException {
         try {
-            return new PassengerContactInfoServiceImpl().findBy(id);
+            return passengerContactInfoService.findBy(id);
         } catch (ServiceException e) {
             throw new ControllerException("Failed to get passenger info", e);
         }
@@ -39,7 +42,7 @@ public class PassengerContactInfoControllerImpl implements PassengerContactInfoC
     @Produces(MediaType.APPLICATION_JSON)
     @Override
     public PassengerContactInfo update(PassengerContactInfo passengerContactInfo) {
-        return new PassengerContactInfoServiceImpl().update(passengerContactInfo);
+        return passengerContactInfoService.update(passengerContactInfo);
     }
 
     @DELETE
@@ -48,7 +51,7 @@ public class PassengerContactInfoControllerImpl implements PassengerContactInfoC
     @Override
     public void delete(@PathParam("id") long id) throws ControllerException {
         try {
-            new PassengerContactInfoServiceImpl().delete(id);
+            passengerContactInfoService.delete(id);
         } catch (ServiceException e) {
             throw new ControllerException("Failed to delete passenger info", e);
         }

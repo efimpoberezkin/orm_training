@@ -14,11 +14,13 @@ import java.util.List;
 @Path("/passengers")
 public class PassengerControllerImpl implements PassengerController {
 
+    private final PassengerServiceImpl passengerService = new PassengerServiceImpl();
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Override
     public List<Passenger> getAll() {
-        return new PassengerServiceImpl().findAll();
+        return passengerService.findAll();
     }
 
     @GET
@@ -27,7 +29,7 @@ public class PassengerControllerImpl implements PassengerController {
     @Override
     public Passenger getById(@PathParam("id") long id) throws ControllerException {
         try {
-            return new PassengerServiceImpl().findBy(id);
+            return passengerService.findBy(id);
         } catch (ServiceException e) {
             throw new ControllerException("Failed to get passenger", e);
         }
@@ -37,14 +39,14 @@ public class PassengerControllerImpl implements PassengerController {
     @Produces(MediaType.APPLICATION_JSON)
     @Override
     public Passenger add(Passenger passenger) {
-        return new PassengerServiceImpl().save(passenger);
+        return passengerService.save(passenger);
     }
 
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Override
     public Passenger update(Passenger passenger) {
-        return new PassengerServiceImpl().update(passenger);
+        return passengerService.update(passenger);
     }
 
     @Override
@@ -59,7 +61,7 @@ public class PassengerControllerImpl implements PassengerController {
             @PathParam("passengerid") long passengerId,
             PassengerContactInfo passengerContactInfo) throws ControllerException {
         try {
-            return new PassengerServiceImpl().addContactInfoToPassenger(passengerId, passengerContactInfo);
+            return passengerService.addContactInfoToPassenger(passengerId, passengerContactInfo);
         } catch (ServiceException e) {
             throw new ControllerException("Failed to add contact info to passenger", e);
         }
