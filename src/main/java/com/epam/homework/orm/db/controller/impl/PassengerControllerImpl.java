@@ -2,6 +2,7 @@ package com.epam.homework.orm.db.controller.impl;
 
 import com.epam.homework.orm.db.controller.ControllerException;
 import com.epam.homework.orm.db.controller.PassengerController;
+import com.epam.homework.orm.db.service.PassengerService;
 import com.epam.homework.orm.db.service.ServiceException;
 import com.epam.homework.orm.db.service.impl.PassengerServiceImpl;
 import com.epam.homework.orm.domain.Passenger;
@@ -15,7 +16,7 @@ import java.util.List;
 @Path("/passengers")
 public class PassengerControllerImpl implements PassengerController {
 
-    private final PassengerServiceImpl passengerService = new PassengerServiceImpl();
+    private final PassengerService passengerService = new PassengerServiceImpl();
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

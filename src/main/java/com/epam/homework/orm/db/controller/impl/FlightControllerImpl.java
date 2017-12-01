@@ -2,6 +2,7 @@ package com.epam.homework.orm.db.controller.impl;
 
 import com.epam.homework.orm.db.controller.ControllerException;
 import com.epam.homework.orm.db.controller.FlightController;
+import com.epam.homework.orm.db.service.FlightService;
 import com.epam.homework.orm.db.service.ServiceException;
 import com.epam.homework.orm.db.service.impl.FlightServiceImpl;
 import com.epam.homework.orm.domain.Flight;
@@ -14,7 +15,7 @@ import java.util.List;
 @Path("/flights")
 public class FlightControllerImpl implements FlightController {
 
-    private final FlightServiceImpl flightService = new FlightServiceImpl();
+    private final FlightService flightService = new FlightServiceImpl();
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
