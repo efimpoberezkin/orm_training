@@ -43,6 +43,7 @@ public class PassengerServiceImpl implements PassengerService {
         throw new UnsupportedOperationException("Operation not supported: passenger has to be deleted via flight");
     }
 
+    @Override
     //TODO make @Transactional after switching to Spring
     public Passenger addContactInfoToPassenger(long passengerId, PassengerContactInfo info) throws ServiceException {
         try {

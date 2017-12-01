@@ -49,6 +49,7 @@ public class FlightServiceImpl implements FlightService {
         }
     }
 
+    @Override
     //TODO make @Transactional after switching to Spring
     public Flight addPassengerToFlight(long flightId, long passengerId) throws ServiceException {
         try {
@@ -65,6 +66,7 @@ public class FlightServiceImpl implements FlightService {
         }
     }
 
+    @Override
     //TODO make @Transactional after switching to Spring
     public void removePassengerFromFlight(long flightId, long passengerId) throws ServiceException {
         try {

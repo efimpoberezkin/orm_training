@@ -20,4 +20,8 @@ public interface FlightService extends DatabaseService<Flight> {
 
     @Override
     void delete(long id);
+
+    Flight addPassengerToFlight(long flightId, long passengerId);
+
+    void removePassengerFromFlight(long flightId, long passengerId);
 }
