@@ -55,8 +55,7 @@ public class FlightControllerImpl implements FlightController {
     public void delete(@PathParam("id") long id) throws ControllerException {
         try {
             flightService.delete(id);
-        } catch (ServiceException e) {
-            throw new ControllerException("Failed to delete flight", e);
+        } catch (ServiceException e) { //ignore
         }
     }
 

@@ -52,8 +52,7 @@ public class PassengerContactInfoControllerImpl implements PassengerContactInfoC
     public void delete(@PathParam("id") long id) throws ControllerException {
         try {
             passengerContactInfoService.delete(id);
-        } catch (ServiceException e) {
-            throw new ControllerException("Failed to delete passenger info", e);
+        } catch (ServiceException e) { //ignore
         }
     }
 }

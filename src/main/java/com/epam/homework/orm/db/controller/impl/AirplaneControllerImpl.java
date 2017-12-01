@@ -56,8 +56,7 @@ public class AirplaneControllerImpl implements AirplaneController {
     public void delete(@PathParam("id") long id) throws ControllerException {
         try {
             airplaneService.delete(id);
-        } catch (ServiceException e) {
-            throw new ControllerException("Failed to delete airplane", e);
+        } catch (ServiceException e) { //ignore
         }
     }
 }
