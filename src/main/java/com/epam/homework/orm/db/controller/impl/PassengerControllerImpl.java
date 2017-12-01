@@ -57,7 +57,7 @@ public class PassengerControllerImpl implements PassengerController {
     @PUT
     @Path("/{passengerid}/passengerinfo")
     @Produces(MediaType.APPLICATION_JSON)
-    public Passenger addPassengerToFlight(
+    public Passenger addInfoToPassenger(
             @PathParam("passengerid") long passengerId,
             PassengerContactInfo passengerContactInfo) throws ControllerException {
         try {
