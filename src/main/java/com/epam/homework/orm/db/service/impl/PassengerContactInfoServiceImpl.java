@@ -1,5 +1,6 @@
 package com.epam.homework.orm.db.service.impl;
 
+import com.epam.homework.orm.db.dao.DAO;
 import com.epam.homework.orm.db.dao.impl.PassengerContactInfoDAOImpl;
 import com.epam.homework.orm.db.service.PassengerContactInfoService;
 import com.epam.homework.orm.db.service.ServiceException;
@@ -9,6 +10,8 @@ import javax.persistence.NoResultException;
 import java.util.List;
 
 public class PassengerContactInfoServiceImpl implements PassengerContactInfoService {
+
+    private final DAO<PassengerContactInfo> passengerContactInfoDAO = new PassengerContactInfoDAOImpl();
 
     @Override
     public PassengerContactInfo save(PassengerContactInfo passengerContactInfo) throws UnsupportedOperationException {
@@ -23,7 +26,7 @@ public class PassengerContactInfoServiceImpl implements PassengerContactInfoServ
     @Override
     public PassengerContactInfo findBy(long id) throws ServiceException {
         try {
-            return new PassengerContactInfoDAOImpl().findBy(id);
+            return passengerContactInfoDAO.findBy(id);
         } catch (NoResultException e) {
             throw new ServiceException("Failed to find passenger contact info by id " + id, e);
         }
@@ -31,13 +34,13 @@ public class PassengerContactInfoServiceImpl implements PassengerContactInfoServ
 
     @Override
     public PassengerContactInfo update(PassengerContactInfo passengerContactInfo) {
-        return new PassengerContactInfoDAOImpl().update(passengerContactInfo);
+        return passengerContactInfoDAO.update(passengerContactInfo);
     }
 
     @Override
     public void delete(long id) throws ServiceException {
         try {
-            new PassengerContactInfoDAOImpl().delete(id);
+            passengerContactInfoDAO.delete(id);
         } catch (NoResultException e) {
             throw new ServiceException("Failed to find passenger contact info by id " + id, e);
         }

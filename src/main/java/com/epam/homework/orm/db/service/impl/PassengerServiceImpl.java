@@ -12,20 +12,22 @@ import java.util.List;
 
 public class PassengerServiceImpl implements PassengerService {
 
+    private final DAO<Passenger> passengerDAO = new PassengerDAOImpl();
+
     @Override
     public Passenger save(Passenger passenger) {
-        return new PassengerDAOImpl().save(passenger);
+        return passengerDAO.save(passenger);
     }
 
     @Override
     public List<Passenger> findAll() {
-        return new PassengerDAOImpl().findAll();
+        return passengerDAO.findAll();
     }
 
     @Override
     public Passenger findBy(long id) throws ServiceException {
         try {
-            return new PassengerDAOImpl().findBy(id);
+            return passengerDAO.findBy(id);
         } catch (NoResultException e) {
             throw new ServiceException("Failed to find passenger by id " + id, e);
         }
@@ -33,7 +35,7 @@ public class PassengerServiceImpl implements PassengerService {
 
     @Override
     public Passenger update(Passenger passenger) {
-        return new PassengerDAOImpl().update(passenger);
+        return passengerDAO.update(passenger);
     }
 
     @Override
@@ -44,7 +46,6 @@ public class PassengerServiceImpl implements PassengerService {
     //TODO make @Transactional after switching to Spring
     public Passenger addContactInfoToPassenger(long passengerId, PassengerContactInfo info) throws ServiceException {
         try {
-            DAO<Passenger> passengerDAO = new PassengerDAOImpl();
             Passenger passenger = passengerDAO.findBy(passengerId);
             passenger.setPassengerContactInfo(info);
             return passengerDAO.update(passenger);

@@ -1,5 +1,6 @@
 package com.epam.homework.orm.db.service.impl;
 
+import com.epam.homework.orm.db.dao.DAO;
 import com.epam.homework.orm.db.dao.impl.AirplaneDAOImpl;
 import com.epam.homework.orm.db.service.AirplaneService;
 import com.epam.homework.orm.db.service.ServiceException;
@@ -10,20 +11,22 @@ import java.util.List;
 
 public class AirplaneServiceImpl implements AirplaneService {
 
+    private final DAO<Airplane> airplaneDAO = new AirplaneDAOImpl();
+
     @Override
     public Airplane save(Airplane airplane) {
-        return new AirplaneDAOImpl().save(airplane);
+        return airplaneDAO.save(airplane);
     }
 
     @Override
     public List<Airplane> findAll() {
-        return new AirplaneDAOImpl().findAll();
+        return airplaneDAO.findAll();
     }
 
     @Override
     public Airplane findBy(long id) throws ServiceException {
         try {
-            return new AirplaneDAOImpl().findBy(id);
+            return airplaneDAO.findBy(id);
         } catch (NoResultException e) {
             throw new ServiceException("Failed to find airplane by id " + id, e);
         }
@@ -31,13 +34,13 @@ public class AirplaneServiceImpl implements AirplaneService {
 
     @Override
     public Airplane update(Airplane airplane) {
-        return new AirplaneDAOImpl().update(airplane);
+        return airplaneDAO.update(airplane);
     }
 
     @Override
     public void delete(long id) throws ServiceException {
         try {
-            new AirplaneDAOImpl().delete(id);
+            airplaneDAO.delete(id);
         } catch (NoResultException e) {
             throw new ServiceException("Failed to find airplane by id " + id, e);
         }

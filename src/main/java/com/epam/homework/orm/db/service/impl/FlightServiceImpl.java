@@ -13,20 +13,22 @@ import java.util.List;
 
 public class FlightServiceImpl implements FlightService {
 
+    private final DAO<Flight> flightDAO = new FlightDAOImpl();
+
     @Override
     public Flight save(Flight flight) {
-        return new FlightDAOImpl().save(flight);
+        return flightDAO.save(flight);
     }
 
     @Override
     public List<Flight> findAll() {
-        return new FlightDAOImpl().findAll();
+        return flightDAO.findAll();
     }
 
     @Override
     public Flight findBy(long id) throws ServiceException {
         try {
-            return new FlightDAOImpl().findBy(id);
+            return flightDAO.findBy(id);
         } catch (NoResultException e) {
             throw new ServiceException("Failed to find flight by id " + id, e);
         }
@@ -34,13 +36,14 @@ public class FlightServiceImpl implements FlightService {
 
     @Override
     public Flight update(Flight flight) {
-        return new FlightDAOImpl().update(flight);
+        return flightDAO.update(flight);
     }
 
     @Override
+
     public void delete(long id) throws ServiceException {
         try {
-            new FlightDAOImpl().delete(id);
+            flightDAO.delete(id);
         } catch (NoResultException e) {
             throw new ServiceException("Failed to find flight by id " + id, e);
         }
@@ -49,7 +52,6 @@ public class FlightServiceImpl implements FlightService {
     //TODO make @Transactional after switching to Spring
     public Flight addPassengerToFlight(long flightId, long passengerId) throws ServiceException {
         try {
-            DAO<Flight> flightDAO = new FlightDAOImpl();
             Flight flight = flightDAO.findBy(flightId);
             try {
                 Passenger passenger = new PassengerDAOImpl().findBy(passengerId);
@@ -66,7 +68,6 @@ public class FlightServiceImpl implements FlightService {
     //TODO make @Transactional after switching to Spring
     public void removePassengerFromFlight(long flightId, long passengerId) throws ServiceException {
         try {
-            DAO<Flight> flightDAO = new FlightDAOImpl();
             Flight flight = flightDAO.findBy(flightId);
             try {
                 Passenger passenger = new PassengerDAOImpl().findBy(passengerId);
