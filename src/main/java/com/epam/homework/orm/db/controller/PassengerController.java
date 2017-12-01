@@ -2,6 +2,7 @@ package com.epam.homework.orm.db.controller;
 
 import com.epam.homework.orm.domain.Passenger;
 
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 public interface PassengerController extends Controller<Passenger> {
@@ -13,7 +14,7 @@ public interface PassengerController extends Controller<Passenger> {
     Passenger getById(long id);
 
     @Override
-    Passenger add(Passenger passenger);
+    Response add(Passenger passenger);
 
     @Override
     Passenger update(Passenger passenger);

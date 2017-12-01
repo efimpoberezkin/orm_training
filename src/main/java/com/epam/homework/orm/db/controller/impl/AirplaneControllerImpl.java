@@ -9,6 +9,7 @@ import com.epam.homework.orm.domain.Airplane;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/airplanes")
@@ -38,8 +39,8 @@ public class AirplaneControllerImpl implements AirplaneController {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Override
-    public Airplane add(Airplane airplane) {
-        return airplaneService.save(airplane);
+    public Response add(Airplane airplane) {
+        return Response.status(Response.Status.CREATED).entity(airplaneService.save(airplane)).build();
     }
 
     @PUT

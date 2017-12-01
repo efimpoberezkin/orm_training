@@ -2,6 +2,7 @@ package com.epam.homework.orm.db.controller;
 
 import com.epam.homework.orm.domain.Flight;
 
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 public interface FlightController extends Controller<Flight> {
@@ -13,7 +14,7 @@ public interface FlightController extends Controller<Flight> {
     Flight getById(long id);
 
     @Override
-    Flight add(Flight flight);
+    Response add(Flight flight);
 
     @Override
     Flight update(Flight flight);

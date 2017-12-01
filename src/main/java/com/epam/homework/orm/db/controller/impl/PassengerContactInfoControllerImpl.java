@@ -9,6 +9,7 @@ import com.epam.homework.orm.domain.PassengerContactInfo;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/passengerinfo")
@@ -34,7 +35,7 @@ public class PassengerContactInfoControllerImpl implements PassengerContactInfoC
     }
 
     @Override
-    public PassengerContactInfo add(PassengerContactInfo passengerContactInfo) throws UnsupportedOperationException {
+    public Response add(PassengerContactInfo passengerContactInfo) throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Operation not supported: passenger info has to be saved via passenger");
     }
 

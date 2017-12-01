@@ -8,6 +8,7 @@ import com.epam.homework.orm.domain.Flight;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/flights")
@@ -37,8 +38,8 @@ public class FlightControllerImpl implements FlightController {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Override
-    public Flight add(Flight flight) {
-        return flightService.save(flight);
+    public Response add(Flight flight) {
+        return Response.status(Response.Status.CREATED).entity(flightService.save(flight)).build();
     }
 
     @PUT

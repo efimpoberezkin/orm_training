@@ -9,6 +9,7 @@ import com.epam.homework.orm.domain.PassengerContactInfo;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/passengers")
@@ -38,8 +39,8 @@ public class PassengerControllerImpl implements PassengerController {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Override
-    public Passenger add(Passenger passenger) {
-        return passengerService.save(passenger);
+    public Response add(Passenger passenger) {
+        return Response.status(Response.Status.CREATED).entity(passengerService.save(passenger)).build();
     }
 
     @PUT

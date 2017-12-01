@@ -1,5 +1,6 @@
 package com.epam.homework.orm.db.controller;
 
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 public interface Controller<T> {
@@ -8,7 +9,7 @@ public interface Controller<T> {
 
     T getById(long id);
 
-    T add(T object);
+    Response add(T object);
 
     T update(T object);
 
