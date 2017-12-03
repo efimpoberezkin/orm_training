@@ -4,32 +4,30 @@ import com.epam.homework.orm.db.controller.ControllerException;
 import com.epam.homework.orm.db.controller.PassengerController;
 import com.epam.homework.orm.db.service.PassengerService;
 import com.epam.homework.orm.db.service.ServiceException;
-import com.epam.homework.orm.db.service.impl.PassengerServiceImpl;
-import com.epam.homework.orm.domain.Passenger;
-import com.epam.homework.orm.domain.PassengerContactInfo;
+import com.epam.homework.orm.db.domain.Passenger;
+import com.epam.homework.orm.db.domain.PassengerContactInfo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("/passengers")
+@RestController
+@RequestMapping("/passengers")
 public class PassengerControllerImpl implements PassengerController {
 
-    private final PassengerService passengerService = new PassengerServiceImpl();
+    @Autowired
+    private PassengerService passengerService;
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @GetMapping
     @Override
     public List<Passenger> getAll() {
         return passengerService.findAll();
     }
 
-    @GET
-    @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
+    @GetMapping("/{id}")
     @Override
-    public Passenger getById(@PathParam("id") long id) throws ControllerException {
+    public Passenger getById(@PathVariable long id) throws ControllerException {
         try {
             return passengerService.findBy(id);
         } catch (ServiceException e) {
@@ -37,31 +35,28 @@ public class PassengerControllerImpl implements PassengerController {
         }
     }
 
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     @Override
-    public Response add(Passenger passenger) {
-        return Response.status(Response.Status.CREATED).entity(passengerService.save(passenger)).build();
+    public Passenger add(@RequestBody Passenger passenger) {
+        return passengerService.save(passenger);
     }
 
-    @PUT
-    @Produces(MediaType.APPLICATION_JSON)
+    @PutMapping
     @Override
-    public Passenger update(Passenger passenger) {
+    public Passenger update(@RequestBody Passenger passenger) {
         return passengerService.update(passenger);
     }
 
     @Override
-    public void delete(@PathParam("id") long id) throws UnsupportedOperationException {
+    public void delete(long id) throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Operation not supported: passenger has to be deleted via flight");
     }
 
-    @PUT
-    @Path("/{passengerid}/passengerinfo")
-    @Produces(MediaType.APPLICATION_JSON)
+    @PutMapping("/{passengerid}/passengerinfo")
     public Passenger addInfoToPassenger(
-            @PathParam("passengerid") long passengerId,
-            PassengerContactInfo passengerContactInfo) throws ControllerException {
+            @PathVariable("passengerid") long passengerId,
+            @RequestBody PassengerContactInfo passengerContactInfo) throws ControllerException {
         try {
             return passengerService.addContactInfoToPassenger(passengerId, passengerContactInfo);
         } catch (ServiceException e) {

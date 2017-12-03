@@ -1,29 +1,36 @@
 package com.epam.homework.orm.db.service.impl;
 
 import com.epam.homework.orm.db.dao.DAO;
-import com.epam.homework.orm.db.dao.impl.PassengerContactInfoDAOImpl;
 import com.epam.homework.orm.db.service.PassengerContactInfoService;
 import com.epam.homework.orm.db.service.ServiceException;
-import com.epam.homework.orm.domain.PassengerContactInfo;
+import com.epam.homework.orm.db.domain.PassengerContactInfo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.NoResultException;
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Service
 public class PassengerContactInfoServiceImpl implements PassengerContactInfoService {
 
-    private final DAO<PassengerContactInfo> passengerContactInfoDAO = new PassengerContactInfoDAOImpl();
+    @Autowired
+    private DAO<PassengerContactInfo> passengerContactInfoDAO;
 
     @Override
+    @Transactional
     public PassengerContactInfo save(PassengerContactInfo passengerContactInfo) throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Operation not supported: passenger info has to be saved via passenger");
     }
 
     @Override
+    @Transactional
     public List<PassengerContactInfo> findAll() throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Operation not supported");
     }
 
     @Override
+    @Transactional
     public PassengerContactInfo findBy(long id) throws ServiceException {
         try {
             return passengerContactInfoDAO.findBy(id);
@@ -33,11 +40,13 @@ public class PassengerContactInfoServiceImpl implements PassengerContactInfoServ
     }
 
     @Override
+    @Transactional
     public PassengerContactInfo update(PassengerContactInfo passengerContactInfo) {
         return passengerContactInfoDAO.update(passengerContactInfo);
     }
 
     @Override
+    @Transactional
     public void delete(long id) throws ServiceException {
         try {
             passengerContactInfoDAO.delete(id);

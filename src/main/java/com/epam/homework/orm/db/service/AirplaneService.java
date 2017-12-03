@@ -1,6 +1,6 @@
 package com.epam.homework.orm.db.service;
 
-import com.epam.homework.orm.domain.Airplane;
+import com.epam.homework.orm.db.domain.Airplane;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.epam.homework.orm.db.service;
 
-import com.epam.homework.orm.domain.PassengerContactInfo;
+import com.epam.homework.orm.db.domain.PassengerContactInfo;
 
 import java.util.List;
 

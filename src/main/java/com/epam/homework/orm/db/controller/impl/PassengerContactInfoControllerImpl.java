@@ -4,29 +4,27 @@ import com.epam.homework.orm.db.controller.ControllerException;
 import com.epam.homework.orm.db.controller.PassengerContactInfoController;
 import com.epam.homework.orm.db.service.DatabaseService;
 import com.epam.homework.orm.db.service.ServiceException;
-import com.epam.homework.orm.db.service.impl.PassengerContactInfoServiceImpl;
-import com.epam.homework.orm.domain.PassengerContactInfo;
+import com.epam.homework.orm.db.domain.PassengerContactInfo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("/passengerinfo")
+@RestController
+@RequestMapping("/passengerinfo")
 public class PassengerContactInfoControllerImpl implements PassengerContactInfoController {
 
-    private final DatabaseService<PassengerContactInfo> passengerContactInfoService = new PassengerContactInfoServiceImpl();
+    @Autowired
+    private DatabaseService<PassengerContactInfo> passengerContactInfoService;
 
     @Override
     public List<PassengerContactInfo> getAll() throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Operation not supported");
     }
 
-    @GET
-    @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
+    @GetMapping("/{id}")
     @Override
-    public PassengerContactInfo getById(@PathParam("id") long id) throws ControllerException {
+    public PassengerContactInfo getById(@PathVariable long id) throws ControllerException {
         try {
             return passengerContactInfoService.findBy(id);
         } catch (ServiceException e) {
@@ -35,22 +33,19 @@ public class PassengerContactInfoControllerImpl implements PassengerContactInfoC
     }
 
     @Override
-    public Response add(PassengerContactInfo passengerContactInfo) throws UnsupportedOperationException {
+    public PassengerContactInfo add(PassengerContactInfo passengerContactInfo) throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Operation not supported: passenger info has to be saved via passenger");
     }
 
-    @PUT
-    @Produces(MediaType.APPLICATION_JSON)
+    @PutMapping
     @Override
-    public PassengerContactInfo update(PassengerContactInfo passengerContactInfo) {
+    public PassengerContactInfo update(@RequestBody PassengerContactInfo passengerContactInfo) {
         return passengerContactInfoService.update(passengerContactInfo);
     }
 
-    @DELETE
-    @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
+    @DeleteMapping("/{id}")
     @Override
-    public void delete(@PathParam("id") long id) throws ControllerException {
+    public void delete(@PathVariable long id) throws ControllerException {
         try {
             passengerContactInfoService.delete(id);
         } catch (ServiceException e) { //ignore

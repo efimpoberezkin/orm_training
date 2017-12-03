@@ -1,66 +1,42 @@
 package com.epam.homework.orm.db.dao.impl;
 
 import com.epam.homework.orm.db.dao.PassengerDAO;
-import com.epam.homework.orm.domain.Passenger;
+import com.epam.homework.orm.db.domain.Passenger;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 import static com.epam.homework.orm.ConstantsContainer.*;
 
+@Repository
 public class PassengerDAOImpl implements PassengerDAO {
 
-    private EntityManagerFactory entityManagerFactory
-            = Persistence.createEntityManagerFactory(FLIGHT_BOOKING_PERSISTENCE_UNIT);
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public Passenger save(Passenger passenger) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-        entityManager.getTransaction().begin();
         entityManager.persist(passenger);
-        entityManager.getTransaction().commit();
-
-        entityManager.close();
         return passenger;
     }
 
     @Override
     public List<Passenger> findAll() {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-        List<Passenger> passengers =
-                entityManager.createNamedQuery(Passenger.FIND_ALL_PASSENGERS, Passenger.class).getResultList();
-
-        entityManager.close();
-        return passengers;
+        return entityManager.createNamedQuery(Passenger.FIND_ALL_PASSENGERS, Passenger.class).getResultList();
     }
 
     @Override
     public Passenger findBy(long id) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-        Passenger passenger =
-                entityManager.createNamedQuery(Passenger.FIND_PASSENGER_BY_ID, Passenger.class)
-                        .setParameter(ID, id)
-                        .getSingleResult();
-
-        entityManager.close();
-        return passenger;
+        return entityManager.createNamedQuery(Passenger.FIND_PASSENGER_BY_ID, Passenger.class)
+                .setParameter(ID, id)
+                .getSingleResult();
     }
 
     @Override
     public Passenger update(Passenger passenger) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-        entityManager.getTransaction().begin();
-        Passenger mergedPassenger = entityManager.merge(passenger);
-        entityManager.getTransaction().commit();
-
-        entityManager.close();
-        return mergedPassenger;
+        return entityManager.merge(passenger);
     }
 
     @Override

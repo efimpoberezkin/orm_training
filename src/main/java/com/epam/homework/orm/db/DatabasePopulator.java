@@ -1,8 +1,9 @@
 package com.epam.homework.orm.db;
 
-import com.epam.homework.orm.db.dao.impl.AirplaneDAOImpl;
-import com.epam.homework.orm.domain.*;
+import com.epam.homework.orm.db.domain.*;
+import com.epam.homework.orm.db.service.AirplaneService;
 import org.apache.log4j.Logger;
+import org.springframework.context.ApplicationContext;
 
 import java.sql.Timestamp;
 
@@ -10,7 +11,7 @@ public class DatabasePopulator {
 
     private static final Logger log = Logger.getRootLogger();
 
-    public static void populateWithExampleData() {
+    public static void populateWithExampleData(ApplicationContext context) {
 
         log.debug("Preparing example data...");
 
@@ -113,7 +114,8 @@ public class DatabasePopulator {
 
         log.debug("Populating database with prepared data...");
 
-        new AirplaneDAOImpl().save(boeing737);
+        AirplaneService airplaneService = context.getBean(AirplaneService.class);
+        airplaneService.save(boeing737);
 
         log.debug("Database populated");
     }

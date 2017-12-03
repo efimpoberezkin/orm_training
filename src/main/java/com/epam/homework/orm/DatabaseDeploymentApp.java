@@ -1,12 +1,13 @@
 package com.epam.homework.orm;
 
+import com.epam.homework.orm.config.PersistenceJPAConfig;
 import com.epam.homework.orm.db.DatabaseInitializer;
 import com.epam.homework.orm.db.DatabasePopulator;
 import org.apache.log4j.Logger;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class DatabaseDeploymentApp {
 
-    private static final String JDBC_DRIVER = "org.postgresql.Driver";
     private static final Logger log = Logger.getRootLogger();
 
     public static void main(String[] args) {
@@ -14,16 +15,11 @@ public class DatabaseDeploymentApp {
     }
 
     private static void deployDatabase() {
-        try {
-            Class.forName(JDBC_DRIVER);
-        } catch (ClassNotFoundException e) {
-            log.error("Could not load driver class", e);
-        }
-
         log.info("*** Initializing database ***");
         DatabaseInitializer.initialize(true);
 
         log.info("*** Populating database with example data ***");
-        DatabasePopulator.populateWithExampleData();
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(PersistenceJPAConfig.class);
+        DatabasePopulator.populateWithExampleData(context);
     }
 }

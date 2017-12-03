@@ -1,30 +1,37 @@
 package com.epam.homework.orm.db.service.impl;
 
 import com.epam.homework.orm.db.dao.DAO;
-import com.epam.homework.orm.db.dao.impl.PassengerDAOImpl;
 import com.epam.homework.orm.db.service.PassengerService;
 import com.epam.homework.orm.db.service.ServiceException;
-import com.epam.homework.orm.domain.Passenger;
-import com.epam.homework.orm.domain.PassengerContactInfo;
+import com.epam.homework.orm.db.domain.Passenger;
+import com.epam.homework.orm.db.domain.PassengerContactInfo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.NoResultException;
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Service
 public class PassengerServiceImpl implements PassengerService {
 
-    private final DAO<Passenger> passengerDAO = new PassengerDAOImpl();
+    @Autowired
+    private DAO<Passenger> passengerDAO;
 
     @Override
+    @Transactional
     public Passenger save(Passenger passenger) {
         return passengerDAO.save(passenger);
     }
 
     @Override
+    @Transactional
     public List<Passenger> findAll() {
         return passengerDAO.findAll();
     }
 
     @Override
+    @Transactional
     public Passenger findBy(long id) throws ServiceException {
         try {
             return passengerDAO.findBy(id);
@@ -34,17 +41,19 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     @Override
+    @Transactional
     public Passenger update(Passenger passenger) {
         return passengerDAO.update(passenger);
     }
 
     @Override
+    @Transactional
     public void delete(long id) throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Operation not supported: passenger has to be deleted via flight");
     }
 
     @Override
-    //TODO make @Transactional after switching to Spring
+    @Transactional
     public Passenger addContactInfoToPassenger(long passengerId, PassengerContactInfo info) throws ServiceException {
         try {
             Passenger passenger = passengerDAO.findBy(passengerId);

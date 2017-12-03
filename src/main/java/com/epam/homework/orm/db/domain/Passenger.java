@@ -1,4 +1,4 @@
-package com.epam.homework.orm.domain;
+package com.epam.homework.orm.db.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -11,15 +11,6 @@ import static com.epam.homework.orm.ConstantsContainer.*;
 
 @Entity
 @Table(name = PASSENGER)
-@NamedQueries({
-        @NamedQuery(
-                name = Passenger.FIND_PASSENGERS_BY_FLIGHT_NAMED_QUERY,
-                query = "SELECT DISTINCT p FROM Passenger p "
-                        + "INNER JOIN p.flights f "
-                        + "WHERE f.id = :id "
-                        + "ORDER BY p.name"
-        )
-})
 @NamedNativeQueries({
         @NamedNativeQuery(
                 name = Passenger.FIND_ALL_PASSENGERS,
@@ -30,33 +21,22 @@ import static com.epam.homework.orm.ConstantsContainer.*;
                 name = Passenger.FIND_PASSENGER_BY_ID,
                 query = "SELECT p.id, p.name, p.gender FROM passenger p WHERE p.id = :id",
                 resultClass = Passenger.class
-        ),
-        @NamedNativeQuery(
-                name = Passenger.FIND_PASSENGERS_BY_FLIGHT_NATIVE_QUERY,
-                query = "SELECT DISTINCT p.id, p.name, p.gender "
-                        + "FROM passenger p "
-                        + "INNER JOIN booking b ON p.id = b.passenger_id "
-                        + "WHERE b.flight_id = :id "
-                        + "ORDER BY p.name",
-                resultClass = Passenger.class
         )
 })
 public class Passenger {
 
     public static final String FIND_ALL_PASSENGERS = "findAllPassengers";
     public static final String FIND_PASSENGER_BY_ID = "findPassengerById";
-    public static final String FIND_PASSENGERS_BY_FLIGHT_NAMED_QUERY = "findPassengersByFlightNamedQuery";
-    public static final String FIND_PASSENGERS_BY_FLIGHT_NATIVE_QUERY = "findPassengersByFlightNativeQuery";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column
     private String name;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column
     private Gender gender;
 
     @OneToOne(
@@ -69,7 +49,7 @@ public class Passenger {
     @JsonIgnore
     @ManyToMany(
             mappedBy = PASSENGERS,
-            fetch = FetchType.EAGER, //TODO Change back to LAZY after switching to Spring
+            fetch = FetchType.EAGER,
             cascade = {
                     CascadeType.PERSIST
             })

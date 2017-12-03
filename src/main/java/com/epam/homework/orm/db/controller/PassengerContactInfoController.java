@@ -1,8 +1,7 @@
 package com.epam.homework.orm.db.controller;
 
-import com.epam.homework.orm.domain.PassengerContactInfo;
+import com.epam.homework.orm.db.domain.PassengerContactInfo;
 
-import javax.ws.rs.core.Response;
 import java.util.List;
 
 public interface PassengerContactInfoController extends Controller<PassengerContactInfo> {
@@ -14,7 +13,7 @@ public interface PassengerContactInfoController extends Controller<PassengerCont
     PassengerContactInfo getById(long id);
 
     @Override
-    Response add(PassengerContactInfo passengerContactInfo) throws UnsupportedOperationException;
+    PassengerContactInfo add(PassengerContactInfo passengerContactInfo) throws UnsupportedOperationException;
 
     @Override
     PassengerContactInfo update(PassengerContactInfo passengerContactInfo);

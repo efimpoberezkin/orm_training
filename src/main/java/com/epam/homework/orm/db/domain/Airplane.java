@@ -1,4 +1,4 @@
-package com.epam.homework.orm.domain;
+package com.epam.homework.orm.db.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -17,10 +17,10 @@ public class Airplane {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = MODEL_NUMBER, nullable = false)
+    @Column(name = MODEL_NUMBER)
     private String modelNumber;
 
-    @Column(nullable = false)
+    @Column
     private int capacity;
 
     @JsonIgnore

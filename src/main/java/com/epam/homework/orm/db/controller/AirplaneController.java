@@ -1,8 +1,7 @@
 package com.epam.homework.orm.db.controller;
 
-import com.epam.homework.orm.domain.Airplane;
+import com.epam.homework.orm.db.domain.Airplane;
 
-import javax.ws.rs.core.Response;
 import java.util.List;
 
 public interface AirplaneController extends Controller<Airplane> {
@@ -14,7 +13,7 @@ public interface AirplaneController extends Controller<Airplane> {
     Airplane getById(long id);
 
     @Override
-    Response add(Airplane airplane);
+    Airplane add(Airplane airplane);
 
     @Override
     Airplane update(Airplane airplane);

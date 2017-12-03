@@ -4,31 +4,29 @@ import com.epam.homework.orm.db.controller.ControllerException;
 import com.epam.homework.orm.db.controller.FlightController;
 import com.epam.homework.orm.db.service.FlightService;
 import com.epam.homework.orm.db.service.ServiceException;
-import com.epam.homework.orm.db.service.impl.FlightServiceImpl;
-import com.epam.homework.orm.domain.Flight;
+import com.epam.homework.orm.db.domain.Flight;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("/flights")
+@RestController
+@RequestMapping("/flights")
 public class FlightControllerImpl implements FlightController {
 
-    private final FlightService flightService = new FlightServiceImpl();
+    @Autowired
+    private FlightService flightService;
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @GetMapping
     @Override
     public List<Flight> getAll() {
         return flightService.findAll();
     }
 
-    @GET
-    @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
+    @GetMapping("/{id}")
     @Override
-    public Flight getById(@PathParam("id") long id) throws ControllerException {
+    public Flight getById(@PathVariable long id) throws ControllerException {
         try {
             return flightService.findBy(id);
         } catch (ServiceException e) {
@@ -36,37 +34,32 @@ public class FlightControllerImpl implements FlightController {
         }
     }
 
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     @Override
-    public Response add(Flight flight) {
-        return Response.status(Response.Status.CREATED).entity(flightService.save(flight)).build();
+    public Flight add(@RequestBody Flight flight) {
+        return flightService.save(flight);
     }
 
-    @PUT
-    @Produces(MediaType.APPLICATION_JSON)
+    @PutMapping
     @Override
-    public Flight update(Flight flight) {
+    public Flight update(@RequestBody Flight flight) {
         return flightService.update(flight);
     }
 
-    @DELETE
-    @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
+    @DeleteMapping("/{id}")
     @Override
-    public void delete(@PathParam("id") long id) throws ControllerException {
+    public void delete(@PathVariable long id) throws ControllerException {
         try {
             flightService.delete(id);
         } catch (ServiceException e) { //ignore
         }
     }
 
-    @PUT
-    @Path("/{flightid}/passengers/{passengerid}")
-    @Produces(MediaType.APPLICATION_JSON)
+    @PutMapping("/{flightid}/passengers/{passengerid}")
     public Flight addPassengerToFlight(
-            @PathParam("flightid") long flightId,
-            @PathParam("passengerid") long passengerId) throws ControllerException {
+            @PathVariable("flightid") long flightId,
+            @PathVariable("passengerid") long passengerId) throws ControllerException {
         try {
             return flightService.addPassengerToFlight(flightId, passengerId);
         } catch (ServiceException e) {
@@ -74,12 +67,10 @@ public class FlightControllerImpl implements FlightController {
         }
     }
 
-    @DELETE
-    @Path("/{flightid}/passengers/{passengerid}")
-    @Produces(MediaType.APPLICATION_JSON)
+    @DeleteMapping("/{flightid}/passengers/{passengerid}")
     public void removePassengerFromFlight(
-            @PathParam("flightid") long flightId,
-            @PathParam("passengerid") long passengerId) throws ControllerException {
+            @PathVariable("flightid") long flightId,
+            @PathVariable("passengerid") long passengerId) throws ControllerException {
         try {
             flightService.removePassengerFromFlight(flightId, passengerId);
         } catch (ServiceException e) {

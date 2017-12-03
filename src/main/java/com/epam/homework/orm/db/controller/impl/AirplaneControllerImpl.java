@@ -4,31 +4,29 @@ import com.epam.homework.orm.db.controller.AirplaneController;
 import com.epam.homework.orm.db.controller.ControllerException;
 import com.epam.homework.orm.db.service.DatabaseService;
 import com.epam.homework.orm.db.service.ServiceException;
-import com.epam.homework.orm.db.service.impl.AirplaneServiceImpl;
-import com.epam.homework.orm.domain.Airplane;
+import com.epam.homework.orm.db.domain.Airplane;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("/airplanes")
+@RestController
+@RequestMapping("/airplanes")
 public class AirplaneControllerImpl implements AirplaneController {
 
-    private final DatabaseService<Airplane> airplaneService = new AirplaneServiceImpl();
+    @Autowired
+    private DatabaseService<Airplane> airplaneService;
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @GetMapping
     @Override
     public List<Airplane> getAll() {
         return airplaneService.findAll();
     }
 
-    @GET
-    @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
+    @GetMapping("/{id}")
     @Override
-    public Airplane getById(@PathParam("id") long id) throws ControllerException {
+    public Airplane getById(@PathVariable long id) throws ControllerException {
         try {
             return airplaneService.findBy(id);
         } catch (ServiceException e) {
@@ -36,25 +34,22 @@ public class AirplaneControllerImpl implements AirplaneController {
         }
     }
 
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     @Override
-    public Response add(Airplane airplane) {
-        return Response.status(Response.Status.CREATED).entity(airplaneService.save(airplane)).build();
+    public Airplane add(@RequestBody Airplane airplane) {
+        return airplaneService.save(airplane);
     }
 
-    @PUT
-    @Produces(MediaType.APPLICATION_JSON)
+    @PutMapping
     @Override
-    public Airplane update(Airplane airplane) {
+    public Airplane update(@RequestBody Airplane airplane) {
         return airplaneService.update(airplane);
     }
 
-    @DELETE
-    @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
+    @DeleteMapping("/{id}")
     @Override
-    public void delete(@PathParam("id") long id) throws ControllerException {
+    public void delete(@PathVariable long id) throws ControllerException {
         try {
             airplaneService.delete(id);
         } catch (ServiceException e) { //ignore

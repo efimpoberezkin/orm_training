@@ -1,6 +1,6 @@
 package com.epam.homework.orm.db.dao;
 
-import com.epam.homework.orm.domain.Flight;
+import com.epam.homework.orm.db.domain.Flight;
 
 import java.util.List;
 

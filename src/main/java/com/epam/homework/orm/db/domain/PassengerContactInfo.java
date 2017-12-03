@@ -1,4 +1,4 @@
-package com.epam.homework.orm.domain;
+package com.epam.homework.orm.db.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
