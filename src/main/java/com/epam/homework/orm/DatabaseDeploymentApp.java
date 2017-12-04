@@ -1,5 +1,6 @@
 package com.epam.homework.orm;
 
+import com.epam.homework.orm.config.DataSourceConfig;
 import com.epam.homework.orm.config.PersistenceJPAConfig;
 import com.epam.homework.orm.db.DatabaseInitializer;
 import com.epam.homework.orm.db.DatabasePopulator;
@@ -19,7 +20,7 @@ public class DatabaseDeploymentApp {
         DatabaseInitializer.initialize(true);
 
         log.info("*** Populating database with example data ***");
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(PersistenceJPAConfig.class);
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DataSourceConfig.class, PersistenceJPAConfig.class);
         DatabasePopulator.populateWithExampleData(context);
     }
 }
