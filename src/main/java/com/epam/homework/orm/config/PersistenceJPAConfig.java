@@ -1,5 +1,6 @@
 package com.epam.homework.orm.config;
 
+import org.hsqldb.util.DatabaseManagerSwing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
@@ -11,6 +12,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -60,5 +62,11 @@ public class PersistenceJPAConfig {
         hibernateProperties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
 
         return hibernateProperties;
+    }
+
+    @PostConstruct
+    public void getDbManager(){
+        DatabaseManagerSwing.main(
+                new String[] { "--url", "jdbc:hsqldb:mem:testdb", "--user", "sa", "--password", ""});
     }
 }
