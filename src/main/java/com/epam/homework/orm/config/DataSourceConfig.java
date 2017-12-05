@@ -32,7 +32,7 @@ public class DataSourceConfig {
     }
 
     @Bean(name = "dataSource")
-    @Profile("dev")
+    @Profile({"dev", "default"})
     public DataSource getDevDataSource() {
         return new EmbeddedDatabaseBuilder()
                 .setType(EmbeddedDatabaseType.HSQL)
