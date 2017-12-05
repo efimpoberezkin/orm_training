@@ -1,27 +1,27 @@
-INSERT INTO airplane (id, model_number, capacity)
+INSERT INTO "airplane" ("id", "model_number", "capacity")
 VALUES
-(1, "Boeing737", 150),
-(2, "Boeing777", 200);
+(1, 'Boeing737', 150),
+(2, 'Boeing777', 200);
 
-INSERT INTO flight (id, from, to, departure, arrival, airplane_id)
+INSERT INTO "flight" ("id", "from", "to", "departure", "arrival", "airplane_id")
 VALUES
-(1, "A", "B", "2017-10-10 10:00:00", "2017-10-10 13:00:00", 1),
-(2, "B", "A", "2017-10-12 10:00:00", "2017-10-12 13:00:00", 1),
-(3, "C", "D", "2017-10-14 10:00:00", "2017-10-14 13:00:00", 2);
+(1, 'A', 'B', '2017-10-10 10:00:00', '2017-10-10 13:00:00', 1),
+(2, 'B', 'A', '2017-10-12 10:00:00', '2017-10-12 13:00:00', 1),
+(3, 'C', 'D', '2017-10-14 10:00:00', '2017-10-14 13:00:00', 2);
 
-INSERT INTO passenger (id, name, gender)
+INSERT INTO "passenger" ("id", "name", "gender")
 VALUES
-(1, "John", "MALE"),
-(2, "Jack", "MALE"),
-(3, "Emily", "FEMALE"),
-(4, "Susan", "FEMALE");
+(1, 'John', 'MALE'),
+(2, 'Jack', 'MALE'),
+(3, 'Emily', 'FEMALE'),
+(4, 'Susan', 'FEMALE');
 
-INSERT INTO passenger_contact_info (id, email, phone)
+INSERT INTO "passenger_contact_info" ("id", "email", "phone")
 VALUES
-(2, "Jack's email", "Jack's phone"),
-(3, "Emily's email", "Emily's phone");
+(2, 'Jacks email', 'Jacks phone'),
+(3, 'Emilys email', 'Emilys phone');
 
-INSERT INTO booking (id, flight_id, passenger_id)
+INSERT INTO "booking" ("id", "flight_id", "passenger_id")
 VALUES
 (1, 1, 1),
 (2, 1, 3),
