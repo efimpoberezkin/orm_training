@@ -40,7 +40,7 @@ public class Passenger {
     private Gender gender;
 
     @OneToOne(
-            mappedBy = PASSENGER,
+            mappedBy = "passenger",
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL
     )
@@ -48,7 +48,7 @@ public class Passenger {
 
     @JsonIgnore
     @ManyToMany(
-            mappedBy = PASSENGERS,
+            mappedBy = "passengers",
             fetch = FetchType.EAGER,
             cascade = {
                     CascadeType.PERSIST

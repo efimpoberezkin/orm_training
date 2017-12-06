@@ -25,7 +25,7 @@ public class Airplane {
 
     @JsonIgnore
     @OneToMany(
-            mappedBy = AIRPLANE,
+            mappedBy = "airplane",
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL
     )

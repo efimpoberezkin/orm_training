@@ -26,7 +26,7 @@ public class PassengerDAOImplTest {
         Passenger passenger = passengerDAO.findBy(4);
 
         Assert.assertEquals(4, passenger.getId());
-        Assert.assertEquals("Susan", passenger.getName());
-        Assert.assertEquals(Gender.FEMALE, passenger.getGender());
+        Assert.assertEquals("Jack", passenger.getName());
+        Assert.assertEquals(Gender.MALE, passenger.getGender());
     }
 }

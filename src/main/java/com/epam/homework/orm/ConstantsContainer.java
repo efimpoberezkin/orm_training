@@ -18,14 +18,11 @@ public final class ConstantsContainer {
 
     // field names
     public static final String MODEL_NUMBER = "model_number";
-    public static final String FROM_LOC = "from_loc";
-    public static final String TO_LOC = "to_loc";
+    public static final String FROM_LOC = "fromloc";
+    public static final String TO_LOC = "toloc";
     public static final String AIRPLANE_ID = "airplane_id";
     public static final String FLIGHT_ID = "flight_id";
-    public static final String PASSENGER_ID = "passenger_ID";
-
-    // entity field names
-    public static final String PASSENGERS = "passengers";
+    public static final String PASSENGER_ID = "passenger_id";
 
     // both entity and db
     public static final String ID = "id";

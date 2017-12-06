@@ -28,15 +28,15 @@ public class FlightDAOImplTest {
         Flight flight = flightDAO.findBy(3);
 
         Assert.assertEquals(3, flight.getId());
-        Assert.assertEquals("C", flight.getFrom());
-        Assert.assertEquals("D", flight.getTo());
-        Assert.assertEquals(Timestamp.valueOf("2017-10-14 10:00:00"), flight.getDeparture());
-        Assert.assertEquals(Timestamp.valueOf("2017-10-14 13:00:00"), flight.getArrival());
+        Assert.assertEquals("B", flight.getFromLoc());
+        Assert.assertEquals("A", flight.getToLoc());
+        Assert.assertEquals(Timestamp.valueOf("2017-10-16 10:00:00"), flight.getDeparture());
+        Assert.assertEquals(Timestamp.valueOf("2017-10-16 13:00:00"), flight.getArrival());
 
         Airplane flightAirplane = flight.getAirplane();
 
-        Assert.assertEquals(2, flightAirplane.getId());
-        Assert.assertEquals("Boeing777", flightAirplane.getModelNumber());
-        Assert.assertEquals(200, flightAirplane.getCapacity());
+        Assert.assertEquals(1, flightAirplane.getId());
+        Assert.assertEquals("Boeing737", flightAirplane.getModelNumber());
+        Assert.assertEquals(150, flightAirplane.getCapacity());
     }
 }

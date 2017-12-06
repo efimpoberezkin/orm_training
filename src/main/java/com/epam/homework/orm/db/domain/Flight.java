@@ -26,10 +26,10 @@ public class Flight {
     private Long id;
 
     @Column(name = FROM_LOC)
-    private String from;
+    private String fromLoc;
 
     @Column(name = TO_LOC)
-    private String to;
+    private String toLoc;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @Column
@@ -64,9 +64,9 @@ public class Flight {
     public Flight() {
     }
 
-    public Flight(String from, String to, Timestamp departure, Timestamp arrival) {
-        this.from = from;
-        this.to = to;
+    public Flight(String fromLoc, String toLoc, Timestamp departure, Timestamp arrival) {
+        this.fromLoc = fromLoc;
+        this.toLoc = toLoc;
         this.departure = departure;
         this.arrival = arrival;
     }
@@ -79,20 +79,20 @@ public class Flight {
         this.id = id;
     }
 
-    public String getFrom() {
-        return from;
+    public String getFromLoc() {
+        return fromLoc;
     }
 
-    public void setFrom(String from) {
-        this.from = from;
+    public void setFromLoc(String fromLoc) {
+        this.fromLoc = fromLoc;
     }
 
-    public String getTo() {
-        return to;
+    public String getToLoc() {
+        return toLoc;
     }
 
-    public void setTo(String to) {
-        this.to = to;
+    public void setToLoc(String toLoc) {
+        this.toLoc = toLoc;
     }
 
     public Timestamp getDeparture() {
@@ -149,8 +149,8 @@ public class Flight {
     public String toString() {
         return "Flight{" +
                 "id=" + id +
-                ", from='" + from + '\'' +
-                ", to='" + to + '\'' +
+                ", from='" + fromLoc + '\'' +
+                ", to='" + toLoc + '\'' +
                 ", departure=" + departure +
                 ", arrival=" + arrival +
                 '}';

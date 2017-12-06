@@ -88,9 +88,9 @@ public class PersistenceJPAConfig {
         return hibernateProperties;
     }
 
-    @PostConstruct
-    public void getDbManager(){
-        DatabaseManagerSwing.main(
-                new String[] { "--url", "jdbc:hsqldb:mem:testdb", "--user", "sa", "--password", ""});
-    }
+//    @PostConstruct
+//    public void getDbManager(){
+//        DatabaseManagerSwing.main(
+//                new String[] { "--url", "jdbc:hsqldb:mem:testdb", "--user", "sa", "--password", ""});
+//    }
 }

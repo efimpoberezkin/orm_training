@@ -24,8 +24,8 @@ public class PassengerContactInfoDAOImplTest {
     public void testFindBy() {
         PassengerContactInfo info = passengerContactInfoDAO.findBy(3);
 
-        Assert.assertEquals(3, info.getId());
-        Assert.assertEquals("Emilys email", info.getEmail());
-        Assert.assertEquals("Emilys phone", info.getPhone());
+        Assert.assertEquals(3, info.getPassengerId());
+        Assert.assertEquals("Logans email", info.getEmail());
+        Assert.assertEquals("Logans phone", info.getPhone());
     }
 }

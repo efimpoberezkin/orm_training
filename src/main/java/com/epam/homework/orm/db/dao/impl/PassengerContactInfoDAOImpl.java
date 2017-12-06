@@ -34,7 +34,7 @@ public class PassengerContactInfoDAOImpl implements PassengerContactInfoDAO {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<PassengerContactInfo> criteriaQuery = criteriaBuilder.createQuery(PassengerContactInfo.class);
         Root<PassengerContactInfo> info = criteriaQuery.from(PassengerContactInfo.class);
-        criteriaQuery.select(info).where(criteriaBuilder.equal(info.get(ID), id));
+        criteriaQuery.select(info).where(criteriaBuilder.equal(info.get(PASSENGER_ID), id));
         PassengerContactInfo passengerContactInfo = entityManager.createQuery(criteriaQuery).getSingleResult();
         return passengerContactInfo;
     }

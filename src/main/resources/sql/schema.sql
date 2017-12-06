@@ -1,57 +1,57 @@
-CREATE TABLE "flight" (
-	"id" integer PRIMARY KEY,
- 	"from" varchar(20),
- 	"to" varchar(20),
- 	"departure" timestamp,
- 	"arrival" timestamp,
- 	"airplane_id" integer
+CREATE TABLE "FLIGHT" (
+	"ID" integer IDENTITY PRIMARY KEY,
+ 	"FROMLOC" varchar(20),
+ 	"TOLOC" varchar(20),
+ 	"DEPARTURE" timestamp,
+ 	"ARRIVAL" timestamp,
+ 	"AIRPLANE_ID" integer
 );
 
-CREATE TABLE "passenger" (
- 	"id" integer PRIMARY KEY,
- 	"name" varchar(20),
- 	"gender" varchar(20)
+CREATE TABLE "PASSENGER" (
+ 	"ID" integer IDENTITY PRIMARY KEY,
+ 	"NAME" varchar(20),
+ 	"GENDER" varchar(20)
 );
 
-CREATE TABLE "passenger_contact_info" (
- 	"id" integer NOT NULL,
- 	"email" varchar(20),
- 	"phone" varchar(20)
+CREATE TABLE "PASSENGER_CONTACT_INFO" (
+ 	"PASSENGER_ID" integer NOT NULL,
+ 	"EMAIL" varchar(20),
+ 	"PHONE" varchar(20)
 );
 
-CREATE TABLE "airplane" (
-	"id" integer PRIMARY KEY,
-	"model_number" varchar(20),
- 	"capacity" integer
+CREATE TABLE "AIRPLANE" (
+	"ID" integer IDENTITY PRIMARY KEY,
+	"MODEL_NUMBER" varchar(20),
+ 	"CAPACITY" integer
 );
 
-CREATE TABLE "booking" (
- 	"id" integer PRIMARY KEY,
- 	"flight_id" integer,
- 	"passenger_id" integer
+CREATE TABLE "BOOKING" (
+ 	"ID" integer IDENTITY PRIMARY KEY,
+ 	"FLIGHT_ID" integer,
+ 	"PASSENGER_ID" integer
 );
 
 
-ALTER TABLE "flight" ADD CONSTRAINT "flies" FOREIGN KEY ("airplane_id")
- 	REFERENCES "airplane"("id")
+ALTER TABLE "FLIGHT" ADD CONSTRAINT "FLIES" FOREIGN KEY ("AIRPLANE_ID")
+ 	REFERENCES "AIRPLANE"("ID")
  	MATCH SIMPLE
  	ON DELETE NO ACTION
  	ON UPDATE NO ACTION;
 
-ALTER TABLE "passenger_contact_info" ADD CONSTRAINT "has_contact_info" FOREIGN KEY ("id")
-	REFERENCES "passenger"("id")
+ALTER TABLE "PASSENGER_CONTACT_INFO" ADD CONSTRAINT "HAS_CONTACT_INFO" FOREIGN KEY ("PASSENGER_ID")
+	REFERENCES "PASSENGER"("ID")
  	MATCH SIMPLE
  	ON DELETE NO ACTION
  	ON UPDATE NO ACTION;
 
-ALTER TABLE "booking" ADD CONSTRAINT "has_booking" FOREIGN KEY ("flight_id")
- 	REFERENCES "flight"("id")
+ALTER TABLE "BOOKING" ADD CONSTRAINT "HAS_BOOKING" FOREIGN KEY ("FLIGHT_ID")
+ 	REFERENCES "FLIGHT"("ID")
  	MATCH SIMPLE
  	ON DELETE NO ACTION
  	ON UPDATE NO ACTION;
 
-ALTER TABLE "booking" ADD CONSTRAINT "books" FOREIGN KEY ("passenger_id")
-	REFERENCES "passenger"("id")
+ALTER TABLE "BOOKING" ADD CONSTRAINT "BOOKS" FOREIGN KEY ("PASSENGER_ID")
+	REFERENCES "PASSENGER"("ID")
 	MATCH SIMPLE
 	ON DELETE NO ACTION
 	ON UPDATE NO ACTION;

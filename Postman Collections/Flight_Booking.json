@@ -131,7 +131,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n\t\"from\": \"E\",\n\t\"to\": \"F\",\n\t\"departure\": \"2017-10-21 10:00:00\",\n\t\"arrival\": \"2017-10-21 13:00:00\"\n}"
+              "raw": "{\n\t\"fromLoc\": \"E\",\n\t\"toLoc\": \"F\",\n\t\"departure\": \"2017-10-21 10:00:00\",\n\t\"arrival\": \"2017-10-21 13:00:00\"\n}"
             },
             "url": "http://localhost:8080/orm/rest/flights",
             "description": null
@@ -151,7 +151,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n\t\"id\": 8,\n\t\"from\": \"Q\",\n\t\"to\": \"R\",\n\t\"departure\": \"2017-10-21 10:00:00\",\n\t\"arrival\": \"2017-10-21 13:00:00\"\n}"
+              "raw": "{\n\t\"id\": 8,\n\t\"fromLoc\": \"Q\",\n\t\"toLoc\": \"R\",\n\t\"departure\": \"2017-10-21 10:00:00\",\n\t\"arrival\": \"2017-10-21 13:00:00\"\n}"
             },
             "url": "http://localhost:8080/orm/rest/flights",
             "description": null
@@ -317,7 +317,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n\t\"id\": 5,\n\t\"email\": \"Jaime's new email\",\n\t\"phone\": \"Jaime's new phone\"\n}"
+              "raw": "{\n\t\"passenger_id\": 5,\n\t\"email\": \"Jaime's new email\",\n\t\"phone\": \"Jaime's new phone\"\n}"
             },
             "url": "http://localhost:8080/orm/rest/passengerinfo",
             "description": null

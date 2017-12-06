@@ -11,7 +11,8 @@ import static com.epam.homework.orm.ConstantsContainer.*;
 public class PassengerContactInfo {
 
     @Id
-    private Long id;
+    @Column(name = PASSENGER_ID)
+    private Long passenger_id;
 
     @Column
     private String email;
@@ -32,12 +33,12 @@ public class PassengerContactInfo {
         this.phone = phone;
     }
 
-    public long getId() {
-        return id;
+    public long getPassengerId() {
+        return passenger_id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setPassengerId(long passenger_id) {
+        this.passenger_id = passenger_id;
     }
 
     public String getEmail() {
