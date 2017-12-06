@@ -30,14 +30,29 @@ public class PersistenceJPAConfig {
     private DataSource dataSource;
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+    @Profile("prod")
+    public LocalContainerEntityManagerFactoryBean entityManagerFactoryPostgres() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource);
         em.setPackagesToScan("com.epam.homework.orm.db.domain");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
-        em.setJpaProperties(hibernateProperties());
+        em.setJpaProperties(hibernatePostgresProperties());
+
+        return em;
+    }
+
+    @Bean
+    @Profile("dev")
+    public LocalContainerEntityManagerFactoryBean entityManagerFactoryHSQL() {
+        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+        em.setDataSource(dataSource);
+        em.setPackagesToScan("com.epam.homework.orm.db.domain");
+
+        JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+        em.setJpaVendorAdapter(vendorAdapter);
+        em.setJpaProperties(hibernateHSQLProperties());
 
         return em;
     }
@@ -55,11 +70,20 @@ public class PersistenceJPAConfig {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
-    Properties hibernateProperties() {
+    Properties hibernatePostgresProperties() {
         Properties hibernateProperties = new Properties();
         hibernateProperties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
         hibernateProperties.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
-        hibernateProperties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
+        hibernateProperties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect.postgres"));
+
+        return hibernateProperties;
+    }
+
+    Properties hibernateHSQLProperties() {
+        Properties hibernateProperties = new Properties();
+        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+        hibernateProperties.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+        hibernateProperties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect.hsql"));
 
         return hibernateProperties;
     }
